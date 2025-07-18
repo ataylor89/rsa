@@ -7,9 +7,6 @@ import os
 
 flags = {'existing_table_sufficient': False}
 
-error_msg = "Usage: python keytable.py <size> <threshold>"
-existing_table_sufficient = "The existing table is sufficient"
-
 test_message = "hello world! my name is andrew"
 
 def load(path='keytable.pickle'):
@@ -99,7 +96,7 @@ def test(n, e, d):
 
 def main():
     if len(sys.argv) != 3:
-        print(ERROR_MSG)
+        print("Usage: python keytable.py <size> <threshold>")
         sys.exit(0)
 
     size = int(sys.argv[1])
@@ -107,8 +104,8 @@ def main():
     
     generate(size, threshold)
 
-    if flags['existing_table_sufficient']:
-        print(existing_table_sufficient)
+    if flags["existing_table_sufficient"]:
+        print("The existing table is sufficient")
     else:
         save("keytable.pickle")
 
