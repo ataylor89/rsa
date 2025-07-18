@@ -31,7 +31,7 @@ def generate(s, t):
 
     load("keytable.pickle")
 
-    if 'table' in globals() and table['threshold'] >= t and len(table['table']) >= s:
+    if 'table' in globals() and done(s, t):
         flags['existing_table_sufficient'] = True
         return True
  
