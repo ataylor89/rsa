@@ -35,7 +35,7 @@ def generate(s, t):
         flags['existing_table_sufficient'] = True
         return True
  
-    if 'table' not in globals() or table['threshold'] < t:
+    if 'table' not in globals():
         table = {'threshold': t, 'table': {}}
 
     primetable.load("primetable.pickle")
