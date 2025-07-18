@@ -38,7 +38,7 @@ def generate(n):
     size = 10 * n
     s = sieve(n, size)
     while s.count('P') < n:
-        size *= 2
+        size *= 10
         s = sieve(n, size)
     
     table = [i for i, j in enumerate(s) if j == 'P'][0:n]
