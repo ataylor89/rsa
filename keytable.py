@@ -61,20 +61,28 @@ def generate(s, t):
         q = primetable.get(j)
         n = p * q
 
+        print("n = %d, p = %d, q = %d" %(n, p, q))
+
         if n in table['table']:
             continue
 
         phi = math.lcm(p-1, q-1)
+
+        print("phi = %d" %phi)
 
         e = 0
         for e in range(2, phi):
             if math.gcd(e, phi) == 1:
                 break
 
+        print("e = %d" %e)
+
         d = 0
         for d in range(2, phi):
             if (d * e) % phi == 1:
                 break
+
+        print("d = %d" %d)
 
         if test(n, e, d):
             print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
