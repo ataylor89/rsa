@@ -4,6 +4,8 @@ import math
 import pickle
 import sys
 import os
+import random
+import time
 
 flags = {'existing_table_sufficient': False}
 
@@ -48,36 +50,29 @@ def generate(s, t):
             kmin = i
             break
 
-    for i in range(kmin, ptablesize):
-        if len(table['table']) >= s:
-            break
+    while len(table['table']) < s:
+        p = primetable.get(random.randint(kmin, ptablesize-1))
+        q = primetable.get(random.randint(kmin, ptablesize-1))
+        n = p * q
 
-        for j in range(kmin, ptablesize):
-            if len(table['table']) >= s:
+        if n in table['table']:
+            continue
+
+        phi = math.lcm(p-1, q-1)
+
+        e = 0
+        for e in range(2, phi):
+            if math.gcd(e, phi) == 1:
                 break
 
-            p = primetable.get(i)
-            q = primetable.get(j)
-            n = p * q
+        d = 0
+        for d in range(2, phi):
+            if (d * e) % phi == 1:
+                break
 
-            if n in table['table']:
-                continue
-
-            phi = math.lcm(p-1, q-1)
-
-            e = 0
-            for e in range(2, phi):
-                if math.gcd(e, phi) == 1:
-                    break
-
-            d = 0
-            for d in range(2, phi):
-                if (d * e) % phi == 1:
-                    break
-
-            if test(n, e, d):
-                print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
-                table['table'][n] = (n, p, q, phi, e, d)
+        if test(n, e, d):
+            print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
+            table['table'][n] = (n, p, q, phi, e, d)
 
     flags['existing_table_sufficient'] = False
 
@@ -95,6 +90,8 @@ def test(n, e, d):
     return codes == decrypted
 
 def main():
+    start_time = time.time()
+
     if len(sys.argv) != 3:
         print("Usage: python keytable.py <size> <threshold>")
         sys.exit(0)
@@ -108,6 +105,7 @@ def main():
         print("The existing table is sufficient")
     else:
         save("keytable.pickle")
+        print("Created a key table of size %d in %s seconds" %(size, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
