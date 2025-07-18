@@ -6,7 +6,7 @@ import time
 flags = {'existing_table_sufficient': False}
 
 def get(n):
-    return table[n-1]
+    return table[n]
 
 def size():
     return len(table)
