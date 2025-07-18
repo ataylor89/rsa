@@ -35,10 +35,10 @@ def generate(n):
         flags['existing_table_sufficient'] = True
         return
 
-    size = 100 * n
+    size = 10 * n
     s = sieve(n, size)
     while s.count('P') < n:
-        size *= 100
+        size *= 2
         s = sieve(n, size)
     
     table = [i for i, j in enumerate(s) if j == 'P'][0:n]
