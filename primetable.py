@@ -1,6 +1,7 @@
 import pickle
 import sys
 import os
+import time
 
 flags = {'existing_table_sufficient': False}
 
@@ -56,6 +57,8 @@ def sieve(n, size):
     return arr
 
 def main():
+    start_time = time.time()
+
     if len(sys.argv) != 2:    
         print(error_msg)
         sys.exit(0)
@@ -76,6 +79,8 @@ def main():
         print(existing_table_sufficient)
     else:
         save("primetable.pickle")
+
+    print("Created a prime table with %d primes in %s seconds" %(n, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
