@@ -51,8 +51,14 @@ def generate(s, t):
             break
 
     while len(table['table']) < s:
-        p = primetable.get(random.randint(startindex, ptablesize-1))
-        q = primetable.get(random.randint(startindex, ptablesize-1))
+        i = random.randint(startindex, ptablesize-1)
+        j = random.randint(startindex, ptablesize-1)
+
+        if i == j:
+            continue
+
+        p = primetable.get(i)
+        q = primetable.get(j)
         n = p * q
 
         if n in table['table']:
