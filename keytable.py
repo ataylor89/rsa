@@ -11,18 +11,18 @@ test_message = "hello world! my name is andrew"
 
 def load(path='keytable.pickle'):
     global table
-
     if os.path.exists(path):
         file = open(path, "rb")
         table = pickle.load(file)
         return True
-
     return False
 
 def save(path):
     if table and not flags['existing_table_sufficient']:
         file = open(path, "wb")
         pickle.dump(table, file)
+        return True
+    return False
 
 def generate(s, t):
     global table
