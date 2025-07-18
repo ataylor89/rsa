@@ -5,9 +5,6 @@ import time
 
 flags = {'existing_table_sufficient': False}
 
-error_msg = "Usage: python primetable.py <n>"
-existing_table_sufficient = "Existing table is sufficient"
-
 def get(n):
     return table[n-1]
 
@@ -61,8 +58,9 @@ def sieve(n, size):
 
 def main():
     start_time = time.time()
+    error_msg = "Usage: python primetable.py <numberofprimes>"
 
-    if len(sys.argv) != 2:    
+    if len(sys.argv) != 2:
         print(error_msg)
         sys.exit(0)
 
@@ -78,8 +76,8 @@ def main():
  
     generate(n)
 
-    if flags['existing_table_sufficient']:
-        print(existing_table_sufficient)
+    if flags["existing_table_sufficient"]:
+        print("Existing table is sufficient")
     else:
         save("primetable.pickle")
         print("Created a prime table with %d primes in %s seconds" %(n, time.time() - start_time))
