@@ -41,18 +41,18 @@ def generate(s, t):
             'table': {}
         }
 
-    kmin = 0
+    startindex = 0
     primetable.load("primetable.pickle")
     ptablesize = primetable.size()
     
     for i in range(1, ptablesize):
         if primetable.get(i) >= t:
-            kmin = i
+            startindex = i
             break
 
     while len(table['table']) < s:
-        p = primetable.get(random.randint(kmin, ptablesize-1))
-        q = primetable.get(random.randint(kmin, ptablesize-1))
+        p = primetable.get(random.randint(startindex, ptablesize-1))
+        q = primetable.get(random.randint(startindex, ptablesize-1))
         n = p * q
 
         if n in table['table']:
