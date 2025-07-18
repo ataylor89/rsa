@@ -51,7 +51,7 @@ def generate(s, t):
         flags['threshold_too_high'] = True
         return False
 
-    while len(table['table']) < s:
+    while not done(s, t):
         i = random.randint(startindex, ptablesize-1)
         j = random.randint(startindex, ptablesize-1)
 
@@ -93,6 +93,14 @@ def generate(s, t):
     flags['threshold_too_high'] = False
     return True
 
+def done(s, t):
+    count = 0
+    for k in table['table'].keys():
+        (n, p, q, phi, e, d) = table['table'][k]
+        if p >= t and q >= t:
+            count += 1
+    return count >= s
+
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
 
@@ -124,7 +132,8 @@ def main():
         print("The threshold is too high")
     else:
         save("keytable.pickle")
-        print("Created a key table of size %d in %s seconds" %(size, time.time() - start_time))
+        print("Created a key table with %d keys that meet threshold %d in %s seconds"
+                %(size, threshold, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
