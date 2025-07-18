@@ -7,7 +7,7 @@ import os
 import random
 import time
 
-flags = {'existing_table_sufficient': False}
+flags = {'existing_table_sufficient': False, 'threshold_too_high': False}
 
 test_message = "hello world! my name is andrew"
 
@@ -33,22 +33,23 @@ def generate(s, t):
 
     if 'table' in globals() and table['threshold'] >= t and len(table['table']) >= s:
         flags['existing_table_sufficient'] = True
-        return
+        return True
  
     if 'table' not in globals() or table['threshold'] < t:
-        table = {
-            'threshold': t,
-            'table': {}
-        }
+        table = {'threshold': t, 'table': {}}
 
-    startindex = 0
     primetable.load("primetable.pickle")
     ptablesize = primetable.size()
+    startindex = -1
     
-    for i in range(1, ptablesize):
+    for i in range(0, ptablesize):
         if primetable.get(i) >= t:
             startindex = i
             break
+
+    if startindex == -1:
+        flags['threshold_too_high'] = True
+        return False
 
     while len(table['table']) < s:
         i = random.randint(startindex, ptablesize-1)
@@ -89,6 +90,8 @@ def generate(s, t):
             table['table'][n] = (n, p, q, phi, e, d)
 
     flags['existing_table_sufficient'] = False
+    flags['threshold_too_high'] = False
+    return True
 
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
@@ -117,6 +120,8 @@ def main():
 
     if flags["existing_table_sufficient"]:
         print("The existing table is sufficient")
+    elif flags["threshold_too_high"]:
+        print("The threshold is too high")
     else:
         save("keytable.pickle")
         print("Created a key table of size %d in %s seconds" %(size, time.time() - start_time))
