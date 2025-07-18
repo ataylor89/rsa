@@ -36,7 +36,7 @@ def generate(s, t):
         return True
  
     if 'table' not in globals():
-        table = {'threshold': t, 'table': {}}
+        table = {}
 
     primetable.load("primetable.pickle")
     ptablesize = primetable.size()
@@ -64,7 +64,7 @@ def generate(s, t):
 
         print("n = %d, p = %d, q = %d" %(n, p, q))
 
-        if n in table['table']:
+        if n in table:
             continue
 
         phi = math.lcm(p-1, q-1)
@@ -87,7 +87,7 @@ def generate(s, t):
 
         if test(n, e, d):
             print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
-            table['table'][n] = (n, p, q, phi, e, d)
+            table[n] = (n, p, q, phi, e, d)
 
     flags['existing_table_sufficient'] = False
     flags['threshold_too_high'] = False
@@ -95,8 +95,8 @@ def generate(s, t):
 
 def done(s, t):
     count = 0
-    for k in table['table'].keys():
-        (n, p, q, phi, e, d) = table['table'][k]
+    for k in table.keys():
+        (n, p, q, phi, e, d) = table[k]
         if p >= t and q >= t:
             count += 1
     return count >= s
