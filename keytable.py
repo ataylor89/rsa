@@ -30,10 +30,11 @@ def generate(s, t):
     global table
 
     load("keytable.pickle")
+    count = 0
 
     if 'table' in globals() and done(s, t):
         flags['existing_table_sufficient'] = True
-        return True
+        return count
  
     if 'table' not in globals():
         table = {}
@@ -49,7 +50,7 @@ def generate(s, t):
 
     if startindex == -1:
         flags['threshold_too_high'] = True
-        return False
+        return count
 
     while not done(s, t):
         i = random.randint(startindex, ptablesize-1)
@@ -88,10 +89,11 @@ def generate(s, t):
         if test(n, e, d):
             print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
             table[n] = (n, p, q, phi, e, d)
+            count += 1
 
     flags['existing_table_sufficient'] = False
     flags['threshold_too_high'] = False
-    return True
+    return count
 
 def done(s, t):
     count = 0
@@ -124,7 +126,7 @@ def main():
     size = int(sys.argv[1])
     threshold = int(sys.argv[2])
     
-    generate(size, threshold)
+    count = generate(size, threshold)
 
     if flags["existing_table_sufficient"]:
         print("The existing table is sufficient")
@@ -132,8 +134,8 @@ def main():
         print("The threshold is too high")
     else:
         save("keytable.pickle")
-        print("Created a key table with %d keys that meet threshold %d in %s seconds"
-                %(size, threshold, time.time() - start_time))
+        print("Generated %d keys that meet threshold %d in %s seconds"
+                %(count, threshold, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
