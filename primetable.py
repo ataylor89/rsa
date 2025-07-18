@@ -20,6 +20,9 @@ def load(path='primetable.pickle'):
     if os.path.exists(path):
         file = open(path, "rb")
         table = pickle.load(file)
+        return True
+
+    return False
 
 def save(path='primetable.pickle'):
     global table
@@ -79,8 +82,7 @@ def main():
         print(existing_table_sufficient)
     else:
         save("primetable.pickle")
-
-    print("Created a prime table with %d primes in %s seconds" %(n, time.time() - start_time))
+        print("Created a prime table with %d primes in %s seconds" %(n, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
