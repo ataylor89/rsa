@@ -13,20 +13,19 @@ def size():
 
 def load(path='primetable.pickle'):
     global table
-
     if os.path.exists(path):
         file = open(path, "rb")
         table = pickle.load(file)
         return True
-
     return False
 
 def save(path='primetable.pickle'):
     global table
-
     if table and not flags['existing_table_sufficient']:
         file = open(path, "wb")
         pickle.dump(table, file)
+        return True
+    return False
 
 def generate(n):
     global table
