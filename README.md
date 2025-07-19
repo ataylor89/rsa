@@ -136,8 +136,8 @@ The project is organized into many modules. A Python file is a module.
 
 Below we describe each module in detail.
 
-Module name | Module description
------------ | ------------------
+Module | Description
+------ | -----------
 primetable.py | Creates a prime table of the first n primes for any positive integer n
 keytable.py | Generates keys using the prime table
 keygen.py | Creates a key pair in publickey.txt and privatekey.txt using the key table
