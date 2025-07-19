@@ -9,7 +9,7 @@ def encrypt(msg, key):
     cipher = []
     for i in range(0, len(codes)):
         (n, e) = key[i % keylen]
-        cipher.append(util.power_mod_m(codes[i], e, n))
+        cipher.append(util.power_mod_n(codes[i], e, n))
     return cipher
 
 def main():

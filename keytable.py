@@ -100,11 +100,11 @@ def test(n, e, d):
 
     encrypted = []
     for i in range(0, len(codes)):
-        encrypted.append(util.power_mod_m(codes[i], e, n))
+        encrypted.append(util.power_mod_n(codes[i], e, n))
 
     decrypted = []
     for i in range(0, len(codes)):
-        decrypted.append(util.power_mod_m(encrypted[i], d, n))
+        decrypted.append(util.power_mod_n(encrypted[i], d, n))
 
     return codes == decrypted
 

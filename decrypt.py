@@ -8,7 +8,7 @@ def decrypt(cipher, key):
     keylen = len(key)
     for i in range(0, len(cipher)):
         (n, d) = key[i % keylen]
-        msg += chr(util.power_mod_m(cipher[i], d, n))
+        msg += chr(util.power_mod_n(cipher[i], d, n))
     return msg
 
 def main():
