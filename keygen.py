@@ -6,21 +6,19 @@ def create_key_pair(keylen=4):
     if not valid(keylen):
         return None
 
+    publickey = open("publickey.txt", "w")
+    privatekey = open("privatekey.txt", "w")
+
     nvalues = list(keytable.table.keys())
     nvalues = random.sample(nvalues, keylen)
 
-    keys = []
     for nvalue in nvalues:
         (n, p, q, phi, e, d) = keytable.table[nvalue]
-        keys.append((n, e, d))
+        publickey.write("n=%d e=%d\n" %(n, e))
+        privatekey.write("n=%d d=%d\n" %(n, d))
 
-    with open("publickey.txt", "w") as file:
-        for (n, e, d) in keys:
-            file.write("n=%d e=%d\n" %(n, e))
-
-    with open("privatekey.txt", "w") as file:
-        for (n, e, d) in keys:
-            file.write("n=%d d=%d\n" %(n, d))
+    publickey.close()
+    privatekey.close()
 
 def valid(keylen):
     return keylen <= len(keytable.table)
