@@ -7,7 +7,7 @@ import os
 import random
 import time
 
-flags = {'existing_table_sufficient': False, 'threshold_too_high': False}
+flags = {'existing_table_sufficient': False, 'pmin_too_high': False}
 
 test_message = "hello world! my name is andrew"
 
@@ -26,35 +26,40 @@ def save(path):
         return True
     return False
 
-def generate(s, t):
+def generate(numkeys, pmin, pmax):
     global table
 
     load("keytable.pickle")
     count = 0
 
-    if 'table' in globals() and done(s, t):
+    if 'table' in globals() and done(numkeys, pmin, pmax):
         flags['existing_table_sufficient'] = True
         return count
  
     if 'table' not in globals():
         table = {}
 
-    primetable.load("primetable.pickle")
-    ptablesize = primetable.size()
     startindex = -1
-    
-    for i in range(0, ptablesize):
-        if primetable.get(i) >= t:
+    endindex = -1
+
+    for i in range(0, primetable.size()):
+        if startindex < 0 and primetable.get(i) >= pmin:
             startindex = i
+        if endindex < 0 and primetable.get(i) >= pmax:
+            endindex = i
+        if startindex > 0 and endindex > 0:
             break
 
     if startindex == -1:
-        flags['threshold_too_high'] = True
+        flags['pmin_too_high'] = True
         return count
 
-    while not done(s, t):
-        i = random.randint(startindex, ptablesize-1)
-        j = random.randint(startindex, ptablesize-1)
+    if endindex == -1:
+        endindex = primetable.size() - 1
+
+    while not done(numkeys, pmin, pmax):
+        i = random.randint(startindex, endindex)
+        j = random.randint(startindex, endindex)
 
         if i == j:
             continue
@@ -95,13 +100,13 @@ def generate(s, t):
     flags['threshold_too_high'] = False
     return count
 
-def done(s, t):
+def done(numkeys, pmin, pmax):
     count = 0
     for k in table.keys():
         (n, p, q, phi, e, d) = table[k]
-        if p >= t and q >= t:
+        if p >= pmin and p <= pmax and q >= pmin and q <= pmax:
             count += 1
-    return count >= s
+    return count >= numkeys
 
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
@@ -119,23 +124,30 @@ def test(n, e, d):
 def main():
     start_time = time.time()
 
-    if len(sys.argv) != 3:
-        print("Usage: python keytable.py <size> <threshold>")
+    if len(sys.argv) < 3 or len(sys.argv) > 4:
+        print("Usage: python keytable.py <numberofkeys> <pmin> <optional:pmax>")
         sys.exit(0)
 
-    size = int(sys.argv[1])
-    threshold = int(sys.argv[2])
+    primetable.load()
+
+    numkeys = int(sys.argv[1])
+    pmin = int(sys.argv[2])
+
+    if len(sys.argv) == 4:
+        pmax = int(sys.argv[3])
+    else:
+        pmax = primetable.table[-1]
     
-    count = generate(size, threshold)
+    count = generate(numkeys, pmin, pmax)
 
     if flags["existing_table_sufficient"]:
         print("The existing table is sufficient")
-    elif flags["threshold_too_high"]:
-        print("The threshold is too high")
+    elif flags["pmin_too_high"]:
+        print("pmin is too high")
     else:
         save("keytable.pickle")
-        print("Generated %d keys that meet threshold %d in %s seconds"
-                %(count, threshold, time.time() - start_time))
+        print("Generated %d keys for pmin=%d and pmax=%d in %s seconds"
+                %(count, pmin, pmax, time.time() - start_time))
 
 if __name__ == "__main__":
     main()
