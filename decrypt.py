@@ -3,8 +3,6 @@ import util
 import pickle
 import sys
 
-ERROR_USER_INPUT = "Usage: python decrypt.py <msg>"
-
 def decrypt(cipher, key):
     msg = ""
     keylen = len(key)
@@ -15,7 +13,7 @@ def decrypt(cipher, key):
 
 def main():
     if len(sys.argv) != 2:
-        print(ERROR_USER_INPUT)
+        print("Usage: python decrypt.py <cipherfile>")
         sys.exit(0)
 
     cipherfile = open(sys.argv[1], "rb")

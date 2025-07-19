@@ -3,8 +3,6 @@ import util
 import pickle
 import sys
 
-ERROR_USER_INPUT = "Usage: python encrypt.py <msg>"
-
 def encrypt(msg, key):
     codes = list(map(lambda x: ord(x), msg))
     keylen = len(key)
@@ -16,7 +14,7 @@ def encrypt(msg, key):
 
 def main():
     if len(sys.argv) != 2: 
-        print(ERROR_USER_INPUT)
+        print("Usage: python encrypt.py <messagefile>")
         sys.exit(0)
 
     msgfile = open(sys.argv[1], "r")
