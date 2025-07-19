@@ -97,7 +97,7 @@ def generate(numkeys, pmin, pmax):
             count += 1
 
     flags['existing_table_sufficient'] = False
-    flags['threshold_too_high'] = False
+    flags['pmin_too_high'] = False
     return count
 
 def done(numkeys, pmin, pmax):
