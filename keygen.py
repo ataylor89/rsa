@@ -2,19 +2,14 @@ import keytable
 import random
 import sys
 
-error_cmdline = "Usage: python keygen.py"
-error_missing_table = "The key table does not exist"
-error_keylen = "The key length exceeds the number of n values in the key table"
-
-def gen_keys(key_len=4):
-    if not valid(key_len):
+def create_keys(keylen=4):
+    if not valid(keylen):
         return None
-
-    nvalues = list(keytable.table['table'].keys())
-    nvalues = random.sample(nvalues, key_len)
+    nvalues = list(keytable.table.keys())
+    nvalues = random.sample(nvalues, keylen)
     keys = []
     for nvalue in nvalues:
-        (n, p, q, phi, e, d) = keytable.table['table'][nvalue]
+        (n, p, q, phi, e, d) = keytable.table[nvalue]
         keys.append((n, e, d))
     return keys
 
@@ -27,29 +22,29 @@ def save(keys):
         for (n, e, d) in keys:
             file.write("n=%d d=%d\n" %(n, d))
 
-def valid(key_len):
-    num_nvalues = len(keytable.table['table'].keys())
-    return key_len <= num_nvalues
+def valid(keylen):
+    num_nvalues = len(keytable.table.keys())
+    return keylen <= num_nvalues
 
 def main():
     if len(sys.argv) > 2:
-        print(error_msg)
+        print("Usage: python keygen.py")
         sys.exit(0)
 
     if len(sys.argv) == 2:
-        key_len = int(sys.argv[1])
+        keylen = int(sys.argv[1])
     else:
-        key_len = 4
+        keylen = 4
 
-    if not keytable.load('keytable.pickle'):
-        print(error_missing_table)
+    if not keytable.load("keytable.pickle"):
+        print("The key table does not exist")
         sys.exit(0)
 
-    if not valid(key_len):
-        print(error_keylen)
+    if not valid(keylen):
+        print("The key length exceeds the number of entries in the key table")
         sys.exit(0)
 
-    keys = gen_keys(key_len)
+    keys = create_keys(keylen)
     save(keys)
     
 if __name__ == "__main__":
