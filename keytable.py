@@ -112,7 +112,7 @@ def main():
     start_time = time.time()
 
     if len(sys.argv) < 2 or len(sys.argv) > 4:
-        print("Usage: python keygen.py <numberofkeys> <optional:pmin> <optional:pmax>")
+        print("Usage: python keytable.py <numberofkeys> <optional:pmin> <optional:pmax>")
         sys.exit(0)
 
     primetable.load()
