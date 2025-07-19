@@ -48,7 +48,7 @@ If we are going to generate 10 keys between a minimum threshold tmin and a maxim
 
 Now... we have already discussed the difficulty of factoring n when p and q are large prime numbers.
 
-It is difficult to factor n by hand, and it is even difficult to facton programmatically...
+It is difficult to factor n by hand, and it is even difficult to factor n programmatically...
 
 But using a powerful library like sympy, it is fairly easy to factor n.
 
