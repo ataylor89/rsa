@@ -109,3 +109,21 @@ Is there a more secure form of public key cryptography?
 That's a good question -- it's a question that I have to research.
 
 In general, the most secure encryption algorithm is a composite encryption algorithm... an encryption algorithm composed of multiple encryption algorithms.
+
+## A philosophical question
+
+There is a really interesting question in philosophy... is the RSA encryption algorithm secure?
+
+Well, if we have access to a supercomputer, then we can often crack an RSA encryption algorithm.
+
+But what if the prime numbers p and q are unimaginably large?
+
+What if p and q are so large, they are unfathomably large?
+
+Then n is unfathomably large, and it is extremely difficult to derive d knowing n and e.
+
+So it is a really interesting question in philosophy... is the RSA encryption algorithm secure?
+
+We can actually choose prime numbers p and q that are so large... they don't even fit on your hard drive.
+
+Then it is really difficult to crack the code.
