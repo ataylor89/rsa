@@ -127,3 +127,21 @@ So it is a really interesting question in philosophy... is the RSA encryption al
 We can actually choose prime numbers p and q that are so large... they don't even fit on your hard drive.
 
 Then it is really difficult to crack the code.
+
+## Design
+
+Before we talk about how to use the files in this repository, let's quickly discuss the project design.
+
+The project is organized into many modules. A Python file is a module.
+
+Below we describe each module in detail.
+
+Module name | Module description
+----------- | ------------------
+primetable.py | Creates a prime table of the first n primes for any positive integer n
+keytable.py | Generates keys using the prime table
+keygen.py | Creates a key pair in publickey.txt and privatekey.txt using the key table
+parser.py | Parses publickey.txt or privatekey.txt to return a list of (n, e) or (n, d) pairs
+util.py | Contains a utility function power_mod_n which is used in encryption and decryption
+encrypt.py | Encrypts a message using the public key
+decrypt.py | Decrypts an encrypted message using the private key
