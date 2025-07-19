@@ -7,7 +7,7 @@ import os
 import random
 import time
 
-flags = {'existing_table_sufficient': False, 'pmin_too_high': False}
+flags = {'pmin_too_high': False}
 
 test_message = "hello world! my name is andrew"
 
@@ -20,7 +20,7 @@ def load(path='keytable.pickle'):
     return False
 
 def save(path):
-    if table and not flags['existing_table_sufficient']:
+    if 'table' in globals():
         file = open(path, "wb")
         pickle.dump(table, file)
         return True
@@ -32,10 +32,6 @@ def generate(numkeys, pmin, pmax):
     load("keytable.pickle")
     count = 0
 
-    if 'table' in globals() and done(numkeys, pmin, pmax):
-        flags['existing_table_sufficient'] = True
-        return count
- 
     if 'table' not in globals():
         table = {}
 
@@ -57,7 +53,7 @@ def generate(numkeys, pmin, pmax):
     if endindex == -1:
         endindex = primetable.size() - 1
 
-    while not done(numkeys, pmin, pmax):
+    while count < numkeys:
         i = random.randint(startindex, endindex)
         j = random.randint(startindex, endindex)
 
@@ -96,17 +92,8 @@ def generate(numkeys, pmin, pmax):
             table[n] = (n, p, q, phi, e, d)
             count += 1
 
-    flags['existing_table_sufficient'] = False
     flags['pmin_too_high'] = False
     return count
-
-def done(numkeys, pmin, pmax):
-    count = 0
-    for k in table.keys():
-        (n, p, q, phi, e, d) = table[k]
-        if p >= pmin and p <= pmax and q >= pmin and q <= pmax:
-            count += 1
-    return count >= numkeys
 
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
@@ -124,14 +111,17 @@ def test(n, e, d):
 def main():
     start_time = time.time()
 
-    if len(sys.argv) < 3 or len(sys.argv) > 4:
-        print("Usage: python keygen.py <numberofkeys> <pmin> <optional:pmax>")
+    if len(sys.argv) < 2 or len(sys.argv) > 4:
+        print("Usage: python keygen.py <numberofkeys> <optional:pmin> <optional:pmax>")
         sys.exit(0)
 
     primetable.load()
-
     numkeys = int(sys.argv[1])
-    pmin = int(sys.argv[2])
+
+    if len(sys.argv) >= 3:
+        pmin = int(sys.argv[2])
+    else:
+        pmin = 0
 
     if len(sys.argv) == 4:
         pmax = int(sys.argv[3])
@@ -140,9 +130,7 @@ def main():
     
     count = generate(numkeys, pmin, pmax)
 
-    if flags["existing_table_sufficient"]:
-        print("The existing table is sufficient")
-    elif flags["pmin_too_high"]:
+    if flags["pmin_too_high"]:
         print("pmin is too high")
     else:
         save("keytable.pickle")
