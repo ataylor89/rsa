@@ -4,7 +4,7 @@ import sys
 
 def encrypt(msg, key):
     ciphertext = ""
-    codes = list(msg.encode("utf-8"))
+    codes = msg.encode("utf-8")
     keylen = len(key)
     for i in range(0, len(codes)):
         (n, e) = key[i % keylen]
