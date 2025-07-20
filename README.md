@@ -228,7 +228,7 @@ Cipher | An encryption algorithm; also, an encrypted message
 Ciphertext | An encrypted message; encrypted information
 Deserialize | Reconstruct an object from a series of bytes
 Key table | A database of keys; a dictionary of keys
-Mod/modulo | A binary operation that takes two operands a and b and returns the remainder of a divided by b
+Mod/modulo | A binary operation that takes two operands a and b and returns the remainder when a is divided by b
 Parser | A parser breaks a word, sentence, or file into parts; a parser breaks a whole into parts; etymology: Latin "pars, partis" which means part or parts
 Plaintext | An unencrypted message; unencrypted information
 Prime number | A positive integer that is only divisible by 1 and itself
