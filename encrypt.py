@@ -8,8 +8,9 @@ def encrypt(msg, key):
     keylen = len(key)
     for i in range(0, len(codes)):
         (n, e) = key[i % keylen]
+        size = util.size(n)
         cipher = util.power_mod_n(codes[i], e, n)
-        encoding = util.encode(cipher, n)
+        encoding = util.encode(cipher, size)
         encoding = bytes(encoding, "utf-8")
         arr.extend(encoding)
     return arr

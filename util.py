@@ -8,22 +8,21 @@ def power_mod_n(base, expo, n):
         expo = expo // 2
     return res
 
-def encode(cipher, modulus):
-    encoding = ""
-    size = get_cipher_size(modulus)
+def encode(num, size):
+    str = ""
     for i in range(0, size):
-        encoding += chr(cipher & 0xFF)
-        cipher = cipher >> 8
-    return encoding
+        str += chr(num & 0xFF)
+        num = num >> 8
+    return str
 
 def decode(str):
-    cipher = 0
+    num = 0
     for i in range(0, len(str)):
-        cipher += (ord(str[i]) << 8*i)
-    return cipher
+        num += ord(str[i]) << 8*i
+    return num
 
-def get_cipher_size(modulus):
+def size(num):
     k = 1
-    while (2**8)**k - 1  < modulus:
+    while (2**8)**k - 1  < num:
         k += 1
     return k

@@ -10,7 +10,7 @@ def decrypt(ciphertext, key):
     i = 0
     while start < len(ciphertext):
         (n, d) = key[i % keylen]
-        size = util.get_cipher_size(n)
+        size = util.size(n)
         end = start + size
         substr = ciphertext[start:end]
         cipher = util.decode(substr)
