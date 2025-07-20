@@ -23,11 +23,9 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python decrypt.py <cipherfile>")
         sys.exit(0)
-
     cipherfile = open(sys.argv[1], "rb")
     ciphertext = cipherfile.read()
     ciphertext = ciphertext.decode("utf-8")
-
     key = parser.parse_key("privatekey.txt")
     msg = decrypt(ciphertext, key)
     print(msg, end='')
