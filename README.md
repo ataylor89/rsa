@@ -216,9 +216,7 @@ If we keep both our keys private and use a long key length, then the RSA algorit
 
 ## Vocabulary
 
-Throughout this document we use a lot of cryptography vocabulary.
-
-We also use a lot of computer science vocabulary.
+Throughout this document, and throughout this project, we use a lot of computer science vocabulary.
 
 Let's define some of the words that we use.
 
