@@ -3,7 +3,7 @@ import util
 import sys
 
 def encrypt(msg, key):
-    arr = bytearray()
+    ciphertext = ""
     codes = list(msg.encode("utf-8"))
     keylen = len(key)
     for i in range(0, len(codes)):
@@ -11,9 +11,8 @@ def encrypt(msg, key):
         size = util.size(n)
         cipher = util.power_mod_n(codes[i], e, n)
         encoding = util.encode(cipher, size)
-        encoding = bytes(encoding, "utf-8")
-        arr.extend(encoding)
-    return arr
+        ciphertext += encoding
+    return ciphertext
 
 def main():
     if len(sys.argv) != 2: 
@@ -24,7 +23,8 @@ def main():
     key = parser.parse_key("publickey.txt")
     ciphertext = encrypt(msg, key)
     with open("cipher.txt", "wb") as cipherfile:
-        cipherfile.write(ciphertext)
+        binarydata = ciphertext.encode("utf-8")
+        cipherfile.write(binarydata)
 
 if __name__ == "__main__":
     main()
