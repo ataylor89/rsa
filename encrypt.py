@@ -1,16 +1,18 @@
 import parser
 import util
-import pickle
 import sys
 
 def encrypt(msg, key):
-    codes = list(map(lambda x: ord(x), msg))
+    arr = bytearray()
+    codes = list(msg.encode("utf-8"))
     keylen = len(key)
-    cipher = []
     for i in range(0, len(codes)):
         (n, e) = key[i % keylen]
-        cipher.append(util.power_mod_n(codes[i], e, n))
-    return cipher
+        cipher = util.power_mod_n(codes[i], e, n)
+        encoding = util.encode(cipher, n)
+        encoding = bytes(encoding, "utf-8")
+        arr.extend(encoding)
+    return arr
 
 def main():
     if len(sys.argv) != 2: 
@@ -21,10 +23,10 @@ def main():
     msg = msgfile.read()
 
     key = parser.parse_key("publickey.txt")
-    cipher = encrypt(msg, key)
+    ciphertext = encrypt(msg, key)
 
-    cipherfile = open("cipher.txt", "wb")
-    pickle.dump(cipher, cipherfile)
+    with open("cipher.txt", "wb") as cipherfile:
+        cipherfile.write(ciphertext)
 
 if __name__ == "__main__":
     main()

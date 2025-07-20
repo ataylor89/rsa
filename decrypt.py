@@ -1,15 +1,23 @@
 import parser
 import util
-import pickle
 import sys
 
-def decrypt(cipher, key):
-    msg = ""
+def decrypt(ciphertext, key):
+    message = ""
     keylen = len(key)
-    for i in range(0, len(cipher)):
+    start = 0
+    end = 0
+    i = 0
+    while start < len(ciphertext):
         (n, d) = key[i % keylen]
-        msg += chr(util.power_mod_n(cipher[i], d, n))
-    return msg
+        size = util.get_cipher_size(n)
+        end = start + size
+        substr = ciphertext[start:end]
+        cipher = util.decode(substr)
+        message += chr(util.power_mod_n(cipher, d, n))
+        i += 1
+        start += size
+    return message
 
 def main():
     if len(sys.argv) != 2:
@@ -17,10 +25,11 @@ def main():
         sys.exit(0)
 
     cipherfile = open(sys.argv[1], "rb")
-    cipher = pickle.load(cipherfile)
+    ciphertext = cipherfile.read()
+    ciphertext = ciphertext.decode("utf-8")
 
     key = parser.parse_key("privatekey.txt")
-    msg = decrypt(cipher, key)
+    msg = decrypt(ciphertext, key)
     print(msg, end='')
 
 if __name__ == "__main__":
