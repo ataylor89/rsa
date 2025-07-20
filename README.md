@@ -230,7 +230,7 @@ Code | A code is a language
 Decode | To turn code into intelligible data (e.g. decoding a text file means turning numeric data into text)
 Deserialize | Reconstruct an object from a series of bytes
 Encode | To turn intelligible data into code (e.g. character encoding means turning characters into code points)
-Filter | A device that separates something into two categories (what gets filtered in and what gets filtered out)
+Filter | A device that separates an input stream into two categories (what gets filtered in and what gets filtered out)
 Key table | A database of keys; a dictionary of keys
 Mod/modulo | A binary operation that takes two operands a and b and returns the remainder when a is divided by b
 Parser | A parser breaks a word, sentence, or file into parts; a parser breaks a whole into parts; etymology: Latin "pars, partis" which means part or parts
