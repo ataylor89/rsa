@@ -233,7 +233,7 @@ Parser | A parser breaks a word, sentence, or file into parts; a parser breaks a
 Plaintext | An unencrypted message; unencrypted information
 Prime number | A positive integer that is only divisible by 1 and itself
 Prime table | A database of primes; a list of primes
-Public key cryptography | A special case of asymmetric key cryptography where the encryption key is called "public"
+Public key cryptography | A special case of asymmetric key cryptography where the encryption key is called "public"and the decryption key is called "private"
 Serialize | Convert an object and its data into a series of bytes
 Sieve | A sieve is a filter; the kitchen colander is a type of sieve
 Symmetric key cryptography | A form of cryptography where the encryption key is identical to the decryption key
