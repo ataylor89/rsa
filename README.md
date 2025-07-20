@@ -213,3 +213,30 @@ We can set a long key length, like 1024.
 If we follow these precautions, then the RSA algorithm is just as secure as the XOR algorithm.
 
 If we keep both our keys private and use a long key length, then the RSA algorithm is very secure.
+
+## Vocabulary
+
+Throughout this document we use a lot of cryptography vocabulary.
+
+We also use a lot of computer science vocabulary.
+
+Let's define some of the words that we use.
+
+Word | Definition
+---- | ----------
+Algorithm | A list of instructions
+Asymmetric key cryptography | A form of cryptography where the encryption key is different from the decryption key
+Cipher | An encryption algorithm; also, an encrypted message
+Ciphertext | An encrypted message; encrypted information
+Deserialize | Reconstruct an object from a series of bytes
+Key table | A database of keys; a dictionary of keys
+Mod/modulo | A binary operation that takes two operands a and b and returns the remainder of a divided by b
+Parser | A parser breaks a word, sentence, or file into parts (etymology: Latin "pars" which means part or parts)
+Plaintext | An unencrypted message; unencrypted information
+Prime number | A positive integer that is only divisible by 1 and itself
+Prime table | A database of primes; a list of primes
+Public key cryptography | A special case of asymmetric key cryptography where the encryption key is called "public"
+Serialize | Convert an object and its data into a series of bytes
+Sieve | A sieve is a filter; the kitchen colander is a type of sieve
+Symmetric key cryptography | A form of cryptography where the encryption key is identical to the decryption key
+Table | A table is really just a synonym for a database (it can be a list, a map, a MySQL table, etc)
