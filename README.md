@@ -178,7 +178,7 @@ So if we keep our encryption key and our decryption key a secret, then the RSA a
 
 To enhance the security of our algorithm, we can use a very long key length... like a key length of 1024.
 
-A key length of 1024 means that the public key contains 1024 (n, e) tuples and the private key contains 1024 (n, d) tuples.
+A key length of 1024 means that the encryption key contains 1024 (n, e) tuples and the decryption key contains 1024 (n, d) tuples.
 
 If we keep both the encryption key and the decryption key a secret, and we use an appropriate key length, like 1024, then the RSA algorithm is just as secure as the XOR algorithm that we implemented in a separate project.
 
