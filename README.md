@@ -226,6 +226,7 @@ Algorithm | A list of instructions
 Asymmetric key cryptography | A form of cryptography where the encryption key is different from the decryption key
 Cipher | An encryption algorithm; also, an encrypted message
 Ciphertext | An encrypted message; encrypted information
+Code | A code is a language
 Decode | To turn code into intelligible data (e.g. decoding a text file means turning numeric data into text)
 Deserialize | Reconstruct an object from a series of bytes
 Encode | To turn intelligible data into code (e.g. character encoding means turning characters into code points)
