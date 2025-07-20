@@ -241,4 +241,5 @@ Public key cryptography | A special case of asymmetric key cryptography where th
 Serialize | Convert an object and its data into a series of bytes
 Sieve | A sieve is a filter; the kitchen colander is a type of sieve
 Symmetric key cryptography | A form of cryptography where the encryption key is identical to the decryption key
+Symmetry | Two things are symmetrical if they're the same in some way
 Table | Table is really just a synonym for database (a table can be a list, a map, a MySQL table, etc); a table is a database
