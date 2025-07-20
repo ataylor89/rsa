@@ -1,0 +1,1 @@
+Created a prime table with 10000000 primes in 825.7336554527283 seconds
