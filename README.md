@@ -19,7 +19,15 @@ Python is a very powerful programming language.
 
 Python allows you to accomplish complex tasks in a short amount of code.
 
-Before we get into the details of RSA encryption, we will explain the design of our project, and define some of the words that we use in a glossary.
+Before we get into the details of RSA encryption, we will explain the design of our project, and define some of the words that we use.
+
+We will also give some examples of symmetric key cryptography and asymmetric key cryptography.
+
+RSA encryption is a form of asymmetric key cryptography.
+
+RSA encryption is also a form of public key cryptography.
+
+Public key cryptography is really just a special case of asymmetric key cryptography, and we will explain this later on.
 
 ## Design
 
