@@ -27,7 +27,7 @@ RSA encryption is a form of asymmetric key cryptography.
 
 RSA encryption is also a form of public key cryptography.
 
-Public key cryptography is really just a special case of asymmetric key cryptography, and we will explain this later on.
+Public key cryptography is a special case of asymmetric key cryptography, and we will explain this later on.
 
 ## Design
 
