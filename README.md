@@ -96,3 +96,89 @@ For this reason, asymmetric key cryptography is often preferred when we have to 
 The RSA algorithm can be used to exchange secret messages between two trusted parties.
 
 The RSA algorithm can also be used to send and receive secret messages with a corporate server.
+
+## Public key cryptography
+
+Alice and Barbara are best friends and they want to exchange secret messages.
+
+They know there's a risk that someone will discover their encryption key.
+
+For this reason, they use public key cryptography.
+
+If an untrusted party discovers their public key, it is still very difficult for the untrusted party to derive the private key and decrypt the encrypted messages.
+
+Alice used a program called keytable to create a database of keys.
+
+She then uses a program called keygen to generate a public key and a private key.
+
+Barbara does the same.
+
+Alice gives Barbara her public key. Barbara gives Alice her public key.
+
+Alice uses Barbara's public key to encrypt her messages.
+
+Barbara uses her private key to decrypt Alice's messages.
+
+Barbara uses Alice's public key to encrypt her messages.
+
+Alice uses her private key to decrypt Barbara's messages.
+
+In this way, Alice and Barbara communicate securely via public key cryptography.
+
+If an untrusted party reads their messages, they won't be able to understand the messages, because the messages are encrypted.
+
+If an untrusted party discovers Alice's public key or Barbara's public key, they still won't be able to read the messages, because they have to derive the private key from the public key in order to decrypt the communications.
+
+You can see that public key cryptography is very useful.
+
+In this example, Alice and Barbara use public key cryptography to communicate in a secure way.
+
+Let's describe another scenario.
+
+Suppose Alice wants to send and receive secret messages with a corporate server.
+
+Alice can send the corporate server her public key.
+
+The corporate server can send Alice its public key.
+
+Alice uses the server's public key to encrypt her messages.
+
+The server uses its private key to decrypt her messages.
+
+The server uses Alice's public key to encrypt its messages.
+
+Alice uses her private key to decrypt the server's messages.
+
+In this way, Alice is able to communicate securely with a corporate server.
+
+If an untrusted party reads one of her messages, they won't be able to understand it, because the message is encrypted.
+
+If an untrusted party discovers Alice's public key, or the server's public key, they still will not be able to understand the messages, because they have to derive the private key from the public key in order to decrypt the communications.
+
+One of the main goals of public key cryptography is to make the key pair so secure that it is difficult to derive the private key from the public key.
+
+To do this, the keys are based on very large numbers.
+
+We can actually base the keys on prime numbers that are unfathomably large, to make it as secure as possible.
+
+We can base the keys on prime numbers that are over a thousand digits long.
+
+If we do this, the encrypted message will be quite big, because the modulus is very big.
+
+(The modulus is the product of the two prime numbers.)
+
+But listen... that's okay.
+
+It's okay if our encrypted message is very big.
+
+We can decrypt the message character by character, to use as little memory as possible.
+
+This might sound extreme, but if we want to make public key cryptography very secure, we can really use extremely large prime numbers, prime numbers that are over 1000 digits long.
+
+In my experience, I have used prime numbers that are over 1,000,000 in value.
+
+The prime numbers I use are 7 digits long or longer.
+
+I keep on pushing myself to use larger and larger prime numbers, by generating keys on AWS cloud.
+
+I use the infrastructure of AWS cloud to generate very large keys that are hard to crack.
