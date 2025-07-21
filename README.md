@@ -23,9 +23,11 @@ Before we get into the details of RSA encryption, we will explain the design of 
 
 ## Design
 
-The project is organized into many modules. A Python file is a module.
+The project is organized into many modules.
 
-Below we describe each module in detail.
+(A module is a Python file.)
+
+We describe each module in detail below.
 
 Module | Description
 ------ | -----------
@@ -55,6 +57,7 @@ Deserialize | Reconstruct an object from a series of bytes
 Encode | To turn intelligible data into code (e.g. character encoding means turning characters into code points)
 Filter | A device that separates an input stream into two categories (what gets filtered in and what gets filtered out)
 Key table | A database of keys; a dictionary of keys
+Module | In the context of Python, a module is a Python file
 Mod/modulo | A binary operation that takes two operands a and b and returns the remainder when a is divided by b
 Parser | A parser breaks a word, sentence, or file into parts; a parser breaks a whole into parts; etymology: Latin "pars, partis" which means part or parts
 Plaintext | An unencrypted message; unencrypted information
