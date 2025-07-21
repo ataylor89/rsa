@@ -100,30 +100,10 @@ Table | Table is really just a synonym for database (a table can be a list, a ma
 
 ## Examples
 
-In my Github I actually have three examples of symmetric key cryptography.
+In my Github I have three examples of symmetric key cryptography.
 
 The XOR, rot13, and rot88 algorithms are examples of symmetric key cryptography.
-
-In symmetric key cryptography, the encryption key is identical to the decryption key.
-
-The XOR algorithm is very secure if we choose a randomly generated key with a very long key length (like 1024, 2048, or 4096 bytes).
-
-The rot13 and rot88 algorithms are not secure.
 
 In my Github I currently have one example of asymmetric key cryptography.
 
 The RSA algorithm is an example of asymmetric key cryptography.
-
-In asymmetric key cryptography, the encryption key is different from the decryption key.
-
-The RSA algorithm is very secure if we base our keys on large prime numbers, choose a long key length, and keep both our encryption key and our decryption key a secret.
-
-The RSA algorithm actually has an advantage over the XOR algorithm.
-
-If we use the XOR algorithm and our key gets discovered by an untrusted party, then our messages can be decrypted by the untrusted party, since the XOR algorithm uses the same key for encryption and decryption.
-
-If we use the RSA algorithm and our public key gets discovered by an untrusted party, then it is still very difficult for the untrusted party to decrypt our messages, because it is difficult to derive the private key from the public key, provided that we base our keys on large prime numbers and choose a long key length.
-
-We can use both the XOR and the RSA encryption algorithms to send secret messages between two trusted parties.
-
-If we have to send secret messages to a corporate server, then it is preferrable to use the RSA encryption algorithm. This way, if an untrusted party discovers our public key, it is still very difficult for the untrusted party to decrypt our messages, since it is very difficult to derive the private key from the public key.
