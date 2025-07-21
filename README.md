@@ -107,7 +107,7 @@ For this reason, they use public key cryptography.
 
 If an untrusted party discovers their public key, it is still very difficult for the untrusted party to derive the private key and decrypt the encrypted messages.
 
-Alice used a program called keytable to create a database of keys.
+Alice uses a program called keytable to create a database of keys.
 
 She then uses a program called keygen to generate a public key and a private key.
 
