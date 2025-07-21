@@ -182,3 +182,25 @@ The prime numbers I use are 7 digits long or longer.
 I keep on pushing myself to use larger and larger prime numbers, by generating keys on AWS cloud.
 
 I use the infrastructure of AWS cloud to generate very large keys that are hard to crack.
+
+## To be clear
+
+To be clear, I just want to say, public key cryptography is a form of asymmetric key cryptography.
+
+We can say that public key cryptography is a form of asymmetric key cryptography... an example of asymmetric key cryptogtraphy... and also an application of asymmetric key cryptography.
+
+Public key cryptography really falls under the category of asymmetric key cryptography.
+
+In public key cryptography, we say that our encryption key is public and our decryption key is private.
+
+Even though we call our encryption key "public", we still keep it as secret as possible.
+
+We don't just advertise our public key to the whole wide world.
+
+We keep both our public key and our private key as secret as possible.
+
+We can share our public key with a trusted party.
+
+We can create a public key to share with a corporate server.
+
+But we still keep our public key and our private key as secret as possible.
