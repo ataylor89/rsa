@@ -244,3 +244,25 @@ But rot13 and rot88 are not secure.
 The RSA and the XOR algorithms, on the other hand, are very secure.
 
 The RSA and the XOR algorithms are very secure, provided that you take the appropriate precautions.
+
+## What is the RSA algorithm?
+
+The RSA algorithm is a form of asymmetric key cryptography.
+
+The RSA algorithm is also a form of public key cryptography.
+
+The RSA algorithm is based on a series of (n, e, d) tuples... so we can also call it the NED algorithm.
+
+n is the product of two prime numbers, preferrably, two very large prime numbers.
+
+e is the encryption exponent. d is the decryption exponent.
+
+The RSA algorithm consists of many parts.
+
+These parts are the following:
+
+1. An algorithm for generating a public key and a private key
+2. An algorithm for encrypting a message using the public key
+3. An algorithm for decrypting an encrypted message using the private key
+
+In the sections that follow, we will explain all three of these parts.
