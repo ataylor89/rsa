@@ -157,7 +157,7 @@ If an untrusted party discovers Alice's public key, or the server's public key, 
 
 One of the main goals of public key cryptography is to make the key pair so secure that it is difficult to derive the private key from the public key.
 
-To do this, the keys are based on very large numbers.
+To do this, the keys are based on very large prime numbers.
 
 We can actually base the keys on prime numbers that are unfathomably large, to make it as secure as possible.
 
