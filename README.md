@@ -58,7 +58,7 @@ Key table | A database of keys; a dictionary of keys
 Mod/modulo | A binary operation that takes two operands a and b and returns the remainder when a is divided by b
 Parser | A parser breaks a word, sentence, or file into parts; a parser breaks a whole into parts; etymology: Latin "pars, partis" which means part or parts
 Plaintext | An unencrypted message; unencrypted information
-Prime number | A positive integer that is only divisible by 1 and itself
+Prime number | A positive integer greater than one that is only divisible by 1 and itself
 Prime table | A database of primes; a list of primes
 Public key cryptography | A special case of asymmetric key cryptography where the encryption key is called "public"and the decryption key is called "private"
 Serialize | Convert an object and its data into a series of bytes
