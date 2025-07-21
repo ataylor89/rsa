@@ -25,8 +25,6 @@ Before we get into the details of RSA encryption, we will explain the design of 
 
 The project is organized into many modules.
 
-(A module is a Python file.)
-
 We describe each module in detail below.
 
 Module | Description
