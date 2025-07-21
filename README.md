@@ -23,9 +23,9 @@ Before we get into the details of RSA encryption, we will explain the design of 
 
 We will also give some examples of symmetric key cryptography and asymmetric key cryptography.
 
-RSA encryption is a form of asymmetric key cryptography.
+The RSA algorithm is a form of asymmetric key cryptography.
 
-RSA encryption is also a form of public key cryptography.
+The RSA algorithm can also be used for public key cryptography.
 
 Public key cryptography is a special case of asymmetric key cryptography, and we will explain this later on.
 
