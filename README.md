@@ -204,3 +204,43 @@ We can share our public key with a trusted party.
 We can create a public key to share with a corporate server.
 
 But we still keep our public key and our private key as secret as possible.
+
+## Secure algorithms versus insecure algorithms
+
+The RSA algorithm is very secure, provided that we base our keys on large prime numbers, choose a large key length (a large number of n-e pairs and n-d pairs), and keep our public key and our private key as secret as possible.
+
+The XOR algorithm is also very secure, provided that we choose a randomly generated key of a long enough length, like 1024 bytes, 2048 bytes, or 4096 bytes.
+
+One advantage of the RSA algorithm is that... if our public key is discovered, it is still very difficult to derive the private key from the public key and decrypt the encrypted messages.
+
+If we use the XOR algorithm, and our key is discovered, a hacker can use our key to decrypt the encrypted messages, because the same key is used for encryption and decryption.
+
+You can see that both the RSA and the XOR algorithms are very secure, but the RSA algorithm has an advantage.
+
+Now it's important to point out... the rot13 and rot88 algorithms are not secure.
+
+ROT13 and ROT88 are known rotation ciphers.
+
+A hacker can try the rot13 and rot88 algorithms on any encrypted message, and see if they have any luck.
+
+It is good to know the rot13 and rot88 rotation ciphers.
+
+Rotation ciphers have been used for thousands of years.
+
+The RSA and XOR algorithms are mathematically very advanced...
+
+The RSA algorithm is based on prime numbers.
+
+The XOR algorithm is based on bit arithmetic and the XOR operation.
+
+Rotation ciphers are mathematically less advanced.
+
+Rotation ciphers were used in classical antiquity.
+
+So it's good to know about rotation ciphers like rot13 and rot88.
+
+But rot13 and rot88 are not secure.
+
+The RSA and the XOR algorithms, on the other hand, are very secure.
+
+The RSA and the XOR algorithms are very secure, provided that you take the appropriate precautions.
