@@ -76,3 +76,23 @@ The [XOR](https://github.com/ataylor89/Math2025/tree/main/xor), [ROT13](https://
 In my Github I currently have one example of asymmetric key cryptography.
 
 The [RSA algorithm](https://github.com/ataylor89/rsa) is an example of asymmetric key cryptography.
+
+## Asymmetric versus symmetric
+
+In asymmetric key cryptography, the encryption key is different from the decryption key.
+
+In symmetric key cryptography, the encryption key is identical to the decryption key.
+
+In a secure asymmetric key algorithm, if our public key is discovered, it is still very difficult to derive the private key from the public key.
+
+This is one advantage of asymmetric key cryptography.
+
+This is one advantage of the RSA algorithm.
+
+In a secure symmetric key algorithm, if our key is discovered by an untrusted party, then the untrusted party can use our key to decrypt our messages, since the encryption key is identical to the decryption key.
+
+For this reason, asymmetric key cryptography is often preferred when we have to send secret messages to a corporate server.
+
+The RSA algorithm can be used to exchange secret messages between two trusted parties.
+
+The RSA algorithm can also be used to send and receive secret messages with a corporate server.
