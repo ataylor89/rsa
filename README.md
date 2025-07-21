@@ -6,7 +6,7 @@ This repository contains an open-source implementation of the RSA encryption alg
 
 There is a lot to talk about, like the difference between symmetric key cryptography and asymmetric key cryptography, and what public key cryptography is all about.
 
-I'll tell you, in an advance, that RSA encryption is a form of asymmetric key cryptography.
+I'll tell you, in advance, that RSA encryption is a form of asymmetric key cryptography.
 
 In symmetric key cryptography, the encryption key is identical to the decryption key.
 
