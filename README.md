@@ -102,8 +102,8 @@ Table | Table is really just a synonym for database (a table can be a list, a ma
 
 In my Github I have three examples of symmetric key cryptography.
 
-The XOR, rot13, and rot88 algorithms are examples of symmetric key cryptography.
+The [XOR](https://github.com/ataylor89/Math2025/tree/main/xor), [rot13](https://github.com/ataylor89/Math2025/tree/main/rot13), and [rot88](https://github.com/ataylor89/Math2025/tree/main/rot88) algorithms are examples of symmetric key cryptography.
 
 In my Github I currently have one example of asymmetric key cryptography.
 
-The RSA algorithm is an example of asymmetric key cryptography.
+The [RSA algorithm](https://github.com/ataylor89/rsa) is an example of asymmetric key cryptography.
