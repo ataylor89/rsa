@@ -163,15 +163,15 @@ We can actually base the keys on prime numbers that are unfathomably large, to m
 
 We can base the keys on prime numbers that are over a thousand digits long.
 
-If we do this, the encrypted message will be quite big, because the modulus is very big.
+If we do this, the encrypted message will be quite large, because the modulus is very large.
 
 (The modulus is the product of the two prime numbers.)
 
 But listen... that's okay.
 
-It's okay if our encrypted message is very big.
+It's okay if our encrypted message is very large.
 
-We can decrypt the message character by character, to use as little memory as possible.
+If we really need to, we can decrypt the message character by character, to use as little memory as possible.
 
 This might sound extreme, but if we want to make public key cryptography very secure, we can really use extremely large prime numbers, prime numbers that are over 1000 digits long.
 
