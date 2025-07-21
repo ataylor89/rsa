@@ -21,9 +21,11 @@ Python allows you to accomplish complex tasks in a short amount of code.
 
 ## Design
 
-The project is organized into many modules. A module is a Python file.
+Before we talk about how to use the files in this repository, let's quickly discuss the project design.
 
-We describe each module in detail below.
+The project is organized into many modules. A Python file is a module.
+
+Below we describe each module in detail.
 
 Module | Description
 ------ | -----------
