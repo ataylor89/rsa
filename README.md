@@ -19,7 +19,7 @@ Python is a very powerful programming language.
 
 Python allows you to accomplish complex tasks in a short amount of code.
 
-Before we get into the details of the RSA encryption algorithm, we will explain the design of our project, and define some of the words that we use.
+Before we get into the details of the RSA algorithm, we will explain the design of our project, and define some of the words that we use.
 
 We will also give some examples of symmetric key cryptography and asymmetric key cryptography.
 
