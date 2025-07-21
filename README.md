@@ -23,8 +23,6 @@ Before we get into the details of RSA encryption, we will explain the design of 
 
 ## Design
 
-Before we talk about how to use the files in this repository, let's quickly discuss the project design.
-
 The project is organized into many modules. A Python file is a module.
 
 Below we describe each module in detail.
