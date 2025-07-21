@@ -102,67 +102,28 @@ Table | Table is really just a synonym for database (a table can be a list, a ma
 
 In my Github I actually have three examples of symmetric key cryptography.
 
-I have a project dedicated to XOR encryption.
-
-The XOR encryption algorithm is an example of symmetric key cryptography.
-
-The XOR algorithm uses the same key for both encryption and decryption.
-
-The XOR algorithm is actually very secure if it uses a randomly generated key that has a long key length (like a key length of 1024 or 2048 or even 4096).
-
-We can find a secure way to send our XOR key to a trusted party, and exchange secret messages with a trusted party using the XOR encryption algorithm.
-
-If the XOR key gets discovered, then the person who discovers it can encrypt our messages.
-
-That's the advantage of RSA encryption. Even if our public key gets discovered, the person who discovers it cannot decrypt our messages. They actually have to crack our public key and derive our private key from our public key. But it is very difficult to derive our private key from our public key if we base our keys on very large prime numbers.
-
-We can base our keys on prime numbers that are so large... they do not fit on the average hard drive.
-
-Now, if we actually do that... our encrypted message will be very long.
-
-But you get the point. We can really choose unfathomably large prime numbers to use for generating our public key and our private key. And then it's very difficult to derive the private key from the public key.
-
-Let's return to the topic on hand.
-
-The XOR encryption algorithm is an example of symmetric key cryptography, and it's actually very secure, provided that we choose a randomly generated key with a very long key length.
-
-The rot13 algorithm is also an example of symmetric key cryptography, but it's not secure.
-
-I have a project on my Github dedicated to the rot13 algorithm.
-
-The rot88 algorithm is another example of symmetric key cryptography, but it's not secure.
-
-I have a project on my Github dedicated to the rot88 algorithm.
-
-So we have given three examples of symmetric key cryptography, and all of them can be found on my Github.
-
-These examples are:
-1. XOR encryption
-2. ROT13
-3. ROT88
-
-RSA encryption is an example of asymmetric key cryptography.
-
-At the present moment, there is only one example of asymmetric key cryptography on my Github.
-
-The example I refer to is this project, the open-source implementation of the RSA algorithm.
-
-So XOR, rot13, and rot88 are three examples of symmetric key cryptography.
-
-RSA encryption is an example of asymmetric key cryptography.
-
-It is worthwhile to point out that... rot13 and rot88 are symmetric rotation ciphers.
-
-We can also create asymmetric rotation ciphers.
-
-It's possible to create asymmetric rotation ciphers.
-
-Symmetric rotation ciphers are examples of symmetric key cryptography.
-
-Asymmetric rotation ciphers are examples of asymmetric key cryptography.
-
-This is a lot of info... so just know...
-
 The XOR, rot13, and rot88 algorithms are examples of symmetric key cryptography.
 
+In symmetric key cryptography, the encryption key is identical to the decryption key.
+
+The XOR algorithm is very secure if we choose a randomly generated key with a very long key length (like 1024, 2048, or 4096 bytes).
+
+The rot13 and rot88 algorithms are not secure.
+
+In my Github I currently have one example of asymmetric key cryptography.
+
 The RSA algorithm is an example of asymmetric key cryptography.
+
+In asymmetric key cryptography, the encryption key is different from the decryption key.
+
+The RSA algorithm is very secure if we base our keys on large prime numbers, choose a long key length, and keep both our encryption key and our decryption key a secret.
+
+The RSA algorithm actually has an advantage over the XOR algorithm.
+
+If we use the XOR algorithm and our key gets discovered by an untrusted party, then our messages can be decrypted by the untrusted party, since the XOR algorithm uses the same key for encryption and decryption.
+
+If we use the RSA algorithm and our public key gets discovered by an untrusted party, then it is still very difficult for the untrusted party to decrypt our messages, because it is difficult to derive the private key from the public key, provided that we base our keys on large prime numbers and choose a long key length.
+
+We can use both the XOR and the RSA encryption algorithms to send secret messages between two trusted parties.
+
+If we have to send secret messages to a corporate server, then it is preferrable to use the RSA encryption algorithm. This way, if an untrusted party discovers our public key, it is still very difficult for the untrusted party to decrypt our messages, since it is very difficult to derive the private key from the public key.
