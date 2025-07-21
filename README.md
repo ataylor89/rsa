@@ -4,51 +4,22 @@
 
 This repository contains an open-source implementation of the RSA encryption algorithm.
 
-There is a lot to talk about, like the difference between symmetric key cryptography and asymmetric key cryptography, and what public key cryptography is all about.
+In this readme file, we will attempt to:
 
-I'll tell you, in advance, that RSA encryption is a form of asymmetric key cryptography.
+1. Teach the RSA encryption algorithm
+2. Make the implementation understandable
+3. Teach bit arithmetic (left shift, right shift, and, or, xor, not, et cetera)
+4. Teach modular arithmetic
+5. Explain the difference between symmetric key cryptography and asymmetric key cryptography
+6. Explain the concept of public key cryptography
 
-In symmetric key cryptography, the encryption key is identical to the decryption key.
+It helps to have a background in the Python programming language, since all of the code is in Python.
 
-In asymmetric key cryptography, the encryption key is different from the decryption key.
+Python is a very powerful programming language.
 
-Public key cryptography is really just a special case of asymmetric key cryptography.
+Python allows you to accomplish complex tasks in a short amount of code.
 
-In public key cryptography, we call the encryption key "public" and the decryption key "private".
-
-Later on in this document, we will give some use cases for RSA encryption.
-
-The RSA algorithm is a powerful form of cryptography because it can be used to send secret messages between two trusted parties, and it can also be used to send secret messages to a corporate server.
-
-If we are sending secret messages to a corporate server, we do not want to send them our private key, so we upload our public key instead.
-
-RSA encryption is based on prime numbers.
-
-The keys that we generate are based on prime numbers.
-
-If we choose very large prime numbers, then it is difficult to derive the private key from the public key.
-
-So even if our public key gets discovered, it is still difficult to derive the private key from the public key, if we base our public key and our private key on large prime numbers, and if we set a long key length, like 1024.
-
-It takes a lot of background to understand these concepts, so we will explain these concepts step-by-step.
-
-First let's discuss the design of our project. After that we will explain the vocabulary that we use.
-
-Then we can really talk about RSA encryption in depth.
-
-We can talk about the algorithm we use to generate a public key and a private key.
-
-We can talk about the algorithm we use to encrypt a message or decrypt an encrypted message.
-
-We can talk about the steps that we take to make RSA encryption secure.
-
-Just remember... we are not obliged to call our encryption key "public".
-
-We can really consider both our encryption key and our decryption key "private".
-
-We can find a secure way to send our encryption key to a trusted party, and still consider it private, because the trusted party keeps it a secret.
-
-If the encryption key is actually discovered by an untrusted paty, then it is still difficult to derive the decryption key from the encryption key, if we use very large prime numbers to generate our keys.
+Before we get into the details of RSA encryption, we will explain the design of our project, and define some of the words that we use in a glossary.
 
 ## Design
 
