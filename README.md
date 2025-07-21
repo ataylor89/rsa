@@ -98,7 +98,7 @@ Symmetric key cryptography | A form of cryptography where the encryption key is 
 Symmetry | Two things are symmetrical if they're the same in some way
 Table | Table is really just a synonym for database (a table can be a list, a map, a MySQL table, etc); a table is a database
 
-## Examples of symmetric key cryptography and asymmetric key cryptography
+## Examples
 
 In my Github I actually have three examples of symmetric key cryptography.
 
