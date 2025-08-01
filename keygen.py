@@ -1,47 +1,39 @@
+import primetable
 import keytable
 import random
-import sys
+import argparse
 
-def create_key_pair(keylen=4):
-    if not valid(keylen):
-        return None
-
-    publickey = open("publickey.txt", "w")
-    privatekey = open("privatekey.txt", "w")
-
-    nvalues = list(keytable.table.keys())
+def create_key_pair(keylen, tmin, tmax):
+    keytable.load()
+    filtered = {}
+    for k,v in keytable.table.items():
+        if v[1] >= tmin and v[1] <= tmax and v[2] >= tmin and v[2] <= tmax:
+            filtered[k] = v
+    if keylen > len(filtered):
+        raise ValueError("There aren't enough keys in the key table that meet the criteria")
+    nvalues = list(filtered.keys())
     nvalues = random.sample(nvalues, keylen)
-
-    for nvalue in nvalues:
-        (n, p, q, phi, e, d) = keytable.table[nvalue]
-        publickey.write("n=%d e=%d\n" %(n, e))
-        privatekey.write("n=%d d=%d\n" %(n, d))
-
-    publickey.close()
-    privatekey.close()
-
-def valid(keylen):
-    return keylen <= len(keytable.table)
+    with open("publickey.txt", "w") as publickey, open("privatekey.txt", "w") as privatekey:
+        for nvalue in nvalues:
+            (n, p, q, phi, e, d) = filtered[nvalue]
+            publickey.write("n=%d e=%d\n" %(n, e))
+            privatekey.write("n=%d d=%d\n" %(n, d))
 
 def main():
-    if len(sys.argv) > 2:
-        print("Usage: python keygen.py")
-        sys.exit(0)
-
-    if not keytable.load("keytable.pickle"):
-        print("The key table does not exist")
-        sys.exit(0)
-
-    if len(sys.argv) == 2:
-        keylen = int(sys.argv[1])
-    else:
-        keylen = 4
-
-    if not valid(keylen):
-        print("The key length exceeds the number of entries in the key table")
-        sys.exit(0)
-
-    create_key_pair(keylen)
+    primetable.load()
+    parser = argparse.ArgumentParser(prog="keygen.py", description="Create a public key and a private key", epilog="Thanks for reading")
+    parser.add_argument("-kl", "--keylength", type=int, required=True)
+    parser.add_argument("-min", "--min_threshold", type=float, default=0)
+    parser.add_argument("-max", "--max_threshold", type=float, default=primetable.get(-1))
+    args = parser.parse_args()
+    keylen = args.keylength
+    tmin = int(args.min_threshold)
+    tmax = int(args.max_threshold)
+    try:
+        create_key_pair(keylen, tmin, tmax)
+    except Exception as err:
+        print(err)
+        return
     print("Created key pair in publickey.txt and privatekey.txt")
     
 if __name__ == "__main__":
