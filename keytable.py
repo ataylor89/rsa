@@ -6,49 +6,26 @@ import sys
 import os
 import random
 import time
+import argparse
 
-flags = {'pmin_too_high': False}
-
+table = {}
 test_message = "hello world! my name is andrew"
 
-def load(path='keytable.pickle'):
-    global table
-    if os.path.exists(path):
-        file = open(path, "rb")
-        table = pickle.load(file)
-        return True
-    return False
-
-def save(path):
-    if 'table' in globals():
-        file = open(path, "wb")
-        pickle.dump(table, file)
-        return True
-    return False
-
-def generate(numkeys, pmin, pmax):
-    global table
-
-    load("keytable.pickle")
+def generate(numkeys, tmin, tmax):
     count = 0
-
-    if 'table' not in globals():
-        table = {}
-
     startindex = -1
     endindex = -1
 
     for i in range(0, primetable.size()):
-        if startindex < 0 and primetable.get(i) >= pmin:
+        if startindex < 0 and primetable.get(i) >= tmin:
             startindex = i
-        if endindex < 0 and primetable.get(i) >= pmax:
+        if endindex < 0 and primetable.get(i) >= tmax:
             endindex = i
         if startindex > 0 and endindex > 0:
             break
 
     if startindex == -1:
-        flags['pmin_too_high'] = True
-        return count
+        raise ValueError("tmin is too high")
 
     if endindex == -1:
         endindex = primetable.size() - 1
@@ -92,9 +69,6 @@ def generate(numkeys, pmin, pmax):
             table[n] = (n, p, q, phi, e, d)
             count += 1
 
-    flags['pmin_too_high'] = False
-    return count
-
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
 
@@ -108,34 +82,37 @@ def test(n, e, d):
 
     return codes == decrypted
 
+def load(path='keytable.pickle'):
+    if os.path.exists(path):
+        with open(path, "rb") as file:
+            table.clear()
+            table.update(pickle.load(file))
+
+def save(path='keytable.pickle'):
+    if len(table) > 0:
+        with open(path, "wb") as file:
+            pickle.dump(table, file)
+
 def main():
-    start_time = time.time()
-
-    if len(sys.argv) < 2 or len(sys.argv) > 4:
-        print("Usage: python keytable.py <numberofkeys> <optional:pmin> <optional:pmax>")
-        sys.exit(0)
-
     primetable.load()
-    numkeys = int(sys.argv[1])
-
-    if len(sys.argv) >= 3:
-        pmin = int(sys.argv[2])
-    else:
-        pmin = 0
-
-    if len(sys.argv) == 4:
-        pmax = int(sys.argv[3])
-    else:
-        pmax = primetable.table[-1]
-    
-    count = generate(numkeys, pmin, pmax)
-
-    if flags["pmin_too_high"]:
-        print("pmin is too high")
-    else:
-        save("keytable.pickle")
-        print("Generated %d keys for pmin=%d and pmax=%d in %s seconds"
-                %(count, pmin, pmax, time.time() - start_time))
+    parser = argparse.ArgumentParser(prog="keytable.py", description="Generate RSA keys", epilog="Thanks for reading")
+    parser.add_argument("-n", "--numberofkeys", type=int, required=True)
+    parser.add_argument("-min", "--min_threshold", type=float, default=0)
+    parser.add_argument("-max", "--max_threshold", type=float, default=primetable.get(-1))
+    args = parser.parse_args()
+    numkeys = args.numberofkeys
+    tmin = int(args.min_threshold)
+    tmax = int(args.max_threshold)
+    load()
+    st = time.time()
+    try:
+        generate(numkeys, tmin, tmax)
+    except Exception as err:
+        print(err)
+        return
+    te = time.time() - st
+    save()
+    print("Generated %d keys for tmin=%d and tmax=%d in %s seconds" %(numkeys, tmin, tmax, te))
 
 if __name__ == "__main__":
     main()
