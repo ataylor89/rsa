@@ -82,6 +82,12 @@ def test(n, e, d):
 
     return codes == decrypted
 
+def get(n):
+    return table[n]
+
+def size():
+    return len(table)
+
 def load(path='keytable.pickle'):
     if os.path.exists(path):
         with open(path, "rb") as file:
