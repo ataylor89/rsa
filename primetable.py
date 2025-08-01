@@ -51,7 +51,7 @@ def main():
         print("Usage: python primetable.py <numberofprimes>")
         return
     try:
-        n = int(sys.argv[1])
+        n = int(float(sys.argv[1]))
         assert n > 0
     except:
         print("Unable to parse n as a positive integer")
