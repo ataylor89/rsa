@@ -18,8 +18,8 @@ def main():
     if len(sys.argv) != 2: 
         print("Usage: python encrypt.py <messagefile>")
         sys.exit(0)
-    file = open(sys.argv[1], "r")
-    msg = file.read()
+    msgfile = open(sys.argv[1], "r")
+    msg = msgfile.read()
     key = parser.parse_key("publickey.txt")
     ciphertext = encrypt(msg, key)
     print(ciphertext, end='')
