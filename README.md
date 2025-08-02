@@ -284,8 +284,9 @@ The algorithm for generating a public key and a private key is described below.
 10. Let d be the first positive integer such that 1 < d < phi and d * e == 1 (mod phi).
 11. Append "(n, e)\n" to publickey.txt
 12. Append "(n, d)\n" to privatekey.txt
-13. If count < keylen then go to step 6; else, continue
-14. We are done! Our public key is stored in publickey.txt and our private key is stored in privatekey.txt.
+13. Increment count by 1, that is, count += 1
+14. If count < keylen then go to step 6; else, continue
+15. We are done! Our public key is stored in publickey.txt and our private key is stored in privatekey.txt.
 
 I forgot to mention that publickey.txt and privatekey.txt start as empty files.
 
