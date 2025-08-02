@@ -267,3 +267,36 @@ These parts are the following:
 3. An algorithm for decrypting an encrypted message using the private key
 
 In the sections that follow, we will explain all three of these parts.
+
+## Generating a public key and a private key
+
+The algorithm for generating a public key and a private key is described below.
+
+1. Choose a key length. For this example let keylen = 1024.
+2. Choose a size for our prime table. For this example let N = 100,000.
+3. Generate the first N primes and store them in a prime table.
+4. Choose a minimum threshold tmin and a maximum threshold tmax. For this example let tmin=1000 and tmax=10,000.
+5. Let count be the number of keys we have generated. At the present moment, count = 0.
+6. Choose two distinct primes p and q from our prime table such that tmin <= p <= tmax and tmin <= q <= tmax.
+7. Let n = p * q.
+8. Let phi be the least common multiple of p-1 and q-1, that is, phi = lcm(p-1, q-1).
+9. Let e be the first positive integer such that 1 < e < phi and gcd(e, phi) == 1, where gcd is the greatest common divisor function.
+10. Let d be the first positive integer such that 1 < d < phi and d * e == 1 (mod phi).
+11. Append "(n, e)\n" to publickey.txt
+12. Append "(n, d)\n" to privatekey.txt
+13. If count < keylen then go to step 6; else, continue
+14. We are done! Our public key is stored in publickey.txt and our private key is stored in privatekey.txt.
+
+I forgot to mention that publickey.txt and privatekey.txt start as empty files.
+
+We append (n, e) to publickey.txt and (n, d) to privatekey.txt after we calculate (n, e, d).
+
+We stop when we have generated the required number of keys (i.e. count == keylen).
+
+Our public key is a list of (n, e) tuples and it is stored in the file publickey.txt.
+
+Our private key is a list of (n, d) tuples and it is stored in the file privatekey.txt.
+
+We use the public key to encrypt messages. We use the private key to decrypt encrypted messages.
+
+Now, let's explain the algorithm for encrypting a message using the public key.
