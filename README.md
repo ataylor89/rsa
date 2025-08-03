@@ -330,25 +330,25 @@ It takes a while to understand the algorithm.
 
 I think it will help if I point out the following:
 
-N1. Before we encrypt a character, we first have to convert it to a code point  
-N2. A code point is just a number in the Unicode code space that represents a number  
-N3. The variable m stores the code point for a single character  
-N4. We apply the operation c = m^e % n to get the cipher  
-N5. It's very expensive to calculate m^e % n for large values of n and e, so we use the utility function power_mod_n which is more efficient  
-N6. The cipher c is actually a number... we have to encode it into a string  
-N7. We use a utility function called encode to encode a number into a string  
-N8. We append the encoding to our ciphertext variable, which stores the encrypted message
+N1) Before we encrypt a character, we first have to convert it to a code point  
+N2) A code point is just a number in the Unicode code space that represents a number  
+N3) The variable m stores the code point for a single character  
+N4) We apply the operation c = m^e % n to get the cipher  
+N5) It's very expensive to calculate m^e % n for large values of n and e, so we use the utility function power_mod_n which is more efficient  
+N6) The cipher c is actually a number... we have to encode it into a string  
+N7) We use a utility function called encode to encode a number into a string  
+N8) We append the encoding to our ciphertext variable, which stores the encrypted message
 
 There is more to point out...
 
-N9. We encrypt the message character by character  
-N10. Each character has an index i in the message  
-N11. Our public key is a list of (n, e) tuples... suppose our key length is 16, which means 16 (n, e) tuples  
-N12. In order to encrypt the character at index i, we use the (n, e) tuple at index i % keylen, that is, key[i % keylen]  
-N13. We use a different (n, e) tuple for each character and then wrap around when we have reached the last (n, e) tuple in our public key  
-N14. The (n, e) tuple is needed for the operation c = m^e % n, which returns our cipher  
-N15. In order to encrypt a character, we need the code point m, the modulus n, the encryption exponent e  
-N16. We encode the cipher c (as in, c = m^e % n) and append the encoding to our ciphertext
+N09) We encrypt the message character by character  
+N10) Each character has an index i in the message  
+N11) Our public key is a list of (n, e) tuples... suppose our key length is 16, which means 16 (n, e) tuples  
+N12) In order to encrypt the character at index i, we use the (n, e) tuple at index i % keylen, that is, key[i % keylen]  
+N13) We use a different (n, e) tuple for each character and then wrap around when we have reached the last (n, e) tuple in our public key  
+N14) The (n, e) tuple is needed for the operation c = m^e % n, which returns our cipher  
+N15) In order to encrypt a character, we need the code point m, the modulus n, the encryption exponent e  
+N16) We encode the cipher c (as in, c = m^e % n) and append the encoding to our ciphertext
 
 After all is done, the variable ciphertext holds our encrypted message, and we just print ciphertext to standard output.
 
