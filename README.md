@@ -369,3 +369,11 @@ The encode function encodes a numeric cipher into a string that gets added to ou
 The algorithm involves a lot of work... and it can take a lot of time to understand.
 
 The heart of the algorithm is the operation c = m^e % n, where m is the code point for a Unicode character, n is the modulus from our public key, e is the encryption exponent from our public key, and c is the numeric cipher that we get as a result of the operation.
+
+You can see that the operation c = m^e % n uses an (n, e) tuple from our public key in combination with a character from our message.
+
+I think it's time to end this section...
+
+I'll just say once more...
+
+The heart of the algorithm is the operation c = m^e % n.
