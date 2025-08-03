@@ -372,6 +372,4 @@ The heart of the algorithm is the operation c = m^e % n, where m is the code poi
 
 You can see that the operation c = m^e % n uses an (n, e) tuple from our public key in combination with a character from our message.
 
-It helps to point this out... so I'll point it out again...
-
 The heart of the algorithm is the operation c = m^e % n.
