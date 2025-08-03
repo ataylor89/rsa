@@ -314,11 +314,11 @@ The algorithm for encrypting a message using the public key is described below.
 6. Let size(n) be a utility function that calculates the number of bytes needed to store a positive integer n.
 7. Let power_mod_n(m, e, n) be a utility function that efficiently calculates m^e % n.
 8. Let encode(n, s) be a utility function that encodes a number n as a string of size s.
-9. for i = 0, i < lengthof(message), i++
-9.1 let m = ord(message[i])
-9.2 let (n, e) = key[i % keylen]
-9.3 let c = power_mod_n(m, e, n)
-9.4 let s = size(n)
+9. for i = 0, i < lengthof(message), i++  
+9.1 let m = ord(message[i])  
+9.2 let (n, e) = key[i % keylen]  
+9.3 let c = power_mod_n(m, e, n)  
+9.4 let s = size(n)  
 9.5 ciphertext += encode(c, s)
 10. Print ciphertext to standard output.
 
