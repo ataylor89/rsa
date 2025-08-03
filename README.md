@@ -325,3 +325,5 @@ The algorithm for encrypting a message using the public key is described below.
 In the algorithm above, we encrypt the message character by character.
 
 Each time we encrypt a character, we append the result to our ciphertext.
+
+After all is done, we print the ciphertext to standard output.
