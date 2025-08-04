@@ -310,7 +310,7 @@ The algorithm for encrypting a message using the public key is described below.
 2. Parse publickey.txt into a list of (n, e) tuples and store in a variable called key.
 3. Let keylen be the length of our public key.
 4. Let ciphertext be the variable that stores our encrypted message.
-5. Let ord be the function that returns the code point for a Unicode character.
+5. Let ord be a function that returns the code point for a Unicode character.
 6. Let size(n) be a utility function that calculates the number of bytes needed to store a positive integer n.
 7. Let power_mod_n(m, e, n) be a utility function that efficiently calculates m^e % n.
 8. Let encode(n, s) be a utility function that encodes a number n as a string of size s.
@@ -327,3 +327,70 @@ In the algorithm above, we encrypt the message character by character.
 Each time we encrypt a character, we append the result to our ciphertext.
 
 After all is done, we print the ciphertext to standard output.
+
+## Decrypting an encrypted message using the private key
+
+The algorithm for decrypting an encrypted message using the private key is described below.
+
+1. Read the ciphertext from a file (e.g. cipher.txt) and store in a variable called ciphertext
+2. Parse privatekey.txt into a list of (n, d) tuples and store in a variable called key
+3. Let keylen be the length of our private key
+4. Let message be the variable that stores our decrypted message
+5. Let chr be a function that returns the Unicode character for a code point
+6. Let size(n) be a utility function that calculates the number of bytes needed to store a positive integer n
+7. Let power_mod_n(c, d, n) be a utility function that efficiently calculates c^d % n
+8. Let decode(substr) be a utility function that decodes a string into a number
+9. Let start be a variable that stores the starting index of a cipher
+10. Let end be a variable that stores the index that is one more than the ending index of a cipher
+11. Let i be the index of the current cipher in the sequence of ciphers
+12. while start < lengthof(ciphertext)
+12.1 let (n, d) = key[i % keylen]
+12.2 let s = size(n)
+12.3 let end = start + size
+12.4 let substr = ciphertext[start:end]
+12.5 let c = decode(substr)
+12.6 let m = power_mod_n(c, d, n)
+12.7 message += chr(m)
+12.8 i += 1
+12.9 start += size
+13. Print message to standard output
+
+In the algorithm above, we decrypt the message cipher by cipher.
+
+We can think of the ciphertext as a sequence of encoded ciphers.
+
+We get the start index and the end index of an encoded cipher.
+
+We decode that portion of the ciphertext (ciphertext[start:end]) into a variable called c.
+
+The variable c stands for "cipher".
+
+Then we calculate the code point of the decrypted character using the calculation m = power_mod_n(c, d, n).
+
+This function efficiently calculates c^d % n.
+
+Thus m = c^d % n.
+
+The variable m stores the code point of the original Unicode character.
+
+Then we use the chr function to convert the code point into its Unicode representation (i.e. the Unicode character).
+
+We append the Unicode character (that is, chr(m)) to the message. The message variable stores our decrypted message.
+
+We increment i, because we are going to look at the ith cipher block in our cipher text during the next iteration.
+
+We set start to start + size, because the start variable needs to point to the beginning of the next encoded cipher.
+
+So we process a sequence of encoded ciphers, and each time we process an encoded cipher, we decode it, and then decrypt the cipher.
+
+We use the operation m = c^d % n to decrypt the cipher.
+
+After we have processed each encoded cipher, we have finished processing the ciphertext, and we can print our decrypted message.
+
+The heart of the encryption algorithm is the computation c = m^e % n.
+
+The heart of the decryption algorithm is the computation m = c^d % n.
+
+The modulus n is the product of two prime numbers (p and q) so it has special properties in modular arithmetic.
+
+That's one reason why the RSA algorithm is based on prime numbers... because of their properties in modular arithmetic.
