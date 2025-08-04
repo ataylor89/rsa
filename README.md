@@ -314,12 +314,12 @@ The algorithm for encrypting a message using the public key is described below.
 6. Let size(n) be a utility function that calculates the number of bytes needed to store a positive integer n.
 7. Let power_mod_n(m, e, n) be a utility function that efficiently calculates m^e % n.
 8. Let encode(n, s) be a utility function that encodes a number n as a string of size s.
-9. for i = 0, i < lengthof(message), i++  
-9.1 let m = ord(message[i])  
-9.2 let (n, e) = key[i % keylen]  
-9.3 let c = power_mod_n(m, e, n)  
-9.4 let s = size(n)  
-9.5 ciphertext += encode(c, s)
+9. for i = 0, i < lengthof(message), i++
+    1. let m = ord(message[i])
+    2. let (n, e) = key[i % keylen]
+    3. let c = power_mod_n(m, e, n)
+    4. let s = size(n)
+    5. ciphertext += encode(c, s)
 10. Print ciphertext to standard output.
 
 In the algorithm above, we encrypt the message character by character.
@@ -344,15 +344,15 @@ The algorithm for decrypting an encrypted message using the private key is descr
 10. Let end be a variable that stores the index that is one more than the ending index of a cipher
 11. Let i be the index of the current cipher in the sequence of ciphers
 12. while start < lengthof(ciphertext)
-12.1 let (n, d) = key[i % keylen]
-12.2 let s = size(n)
-12.3 let end = start + size
-12.4 let substr = ciphertext[start:end]
-12.5 let c = decode(substr)
-12.6 let m = power_mod_n(c, d, n)
-12.7 message += chr(m)
-12.8 i += 1
-12.9 start += size
+    1. let (n, d) = key[i % keylen]
+    2. let s = size(n)
+    3. let end = start + size
+    4. let substr = ciphertext[start:end]
+    5. let c = decode(substr)
+    6. let m = power_mod_n(c, d, n)
+    7. message += chr(m)
+    8. i += 1
+    9. start += size
 13. Print message to standard output
 
 In the algorithm above, we decrypt the message cipher by cipher.
