@@ -394,3 +394,91 @@ The heart of the decryption algorithm is the computation m = c^d % n.
 The modulus n is the product of two prime numbers (p and q) so it has special properties in modular arithmetic.
 
 That's one reason why the RSA algorithm is based on prime numbers... because of their properties in modular arithmetic.
+
+## Usage
+
+I've waited until the end of this document to write a section on usage.
+
+Sorry about that... I could have made it the first section.
+
+Without further adieu, let's explain how to use the files in this repository.
+
+    # RSA keys are based on prime numbers, so the first thing we do is generate a prime table
+    % python primetable.py 1e5
+
+    # Before we proceed, we can open the prime table and inspect the prime table
+    % python
+    >>> import primetable
+    >>> primetable.load()
+    >>> primetable.size()
+    100000
+    >>> primetable.table[0:10]
+    [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    >>> primetable.get(-1)
+    1299709
+
+    # Now we can use the keytable.py program to generate RSA keys and store them in a key table
+    % python keytable.py -n 10 -min 1e3 -max 1e4
+    ...
+    .
+    .
+    Generated 10 keys for tmin=1000 and tmax=10000 in 2.7593281269073486 seconds
+
+    # The command above generates 10 RSA keys based on prime numbers between 1,000 (1e3) and 10,000 (1e4)
+    # The 10 RSA keys that we generated are stored in the file keytable.pickle
+    # Now we can use the keys in our key table to create a public key and a private key
+    # We will use a keylength of 8
+    % python keygen.py -kl 8 -min 1e3 -max 1e4
+    Created key pair in publickey.txt and privatekey.txt
+
+    # We chose 8 keys from our key table
+    # Every key is based on prime numbers between 1e3 and 1e4
+    # To make the algorithm more secure we can increase the minimum and maximum thresholds and we can also increase the key length
+    # Our public key is a list of 8 (n, e) tuples and our private key is a list of 8 (n, d) tuples
+    # Now we can use our public key to encrypt the message stored in message.txt
+    % python encrypt.py message.txt
+    <encrypted message>
+
+    # Let's encrypt the message stored in message.txt and write the encrypted message to cipher.txt
+    % python encrypt.py message.txt > cipher.txt
+
+    # Let's quickly view the contents of cipher.txt to verify that it holds the encrypted message
+    % cat cipher.txt
+    <encrypted message>
+
+    # We verified that cipher.txt holds the encrypted message
+    # Now we are going to decrypt the contents of cipher.txt and print the result to standard output
+    % python decrypt.py cipher.txt
+    Hello
+    My name is Andrew
+    I am writing this on Saturday, June 28, 2025
+    It is summer
+    According to Google, the summer season began two Fridays ago
+    I am currently watching The Legend of Korra on YouTube
+    (I purchased the show on YouTube)
+    I really like this show
+    I am a big fan of Avatar: The Last Airbender and The Legend of Korra
+    We finished watching Avatar earlier this year
+
+    # There we go... we encrypted a message and saved the encrypted message in cipher.txt
+    # Then we decrypted the contents of cipher.txt and printed the result to standard output
+    # The result that we see in standard output is the original message, as expected
+    # We just demonstrated how we can use the files in this repository to accomplish the following:
+    # 1) Create a prime table of the first n primes
+    # 2) Create RSA keys and store them in a key table
+    # 3) Create a public key and a private key using keys from our key table
+    # 4) Use the public key to encrypt a message
+    # 5) Use the private key to decrypt a message
+    # To be clear, the main files that we used are primetable.py, keytable.py, keygen.py, encrypt.py, and decrypt.py.
+    # The other files are auxiliary files that are used by the main modules.
+    # I hope that this code section explains how to use the files in this repository.
+    # I thought that the easiest way to explain it would be to give an example.
+    # Thanks for reading.
+    # Today is Tuesday, August 5, 2025.
+    # I'm a little tired today so my plan is to take it easy...
+    # In my family we use the words "best decision" when we talk about decision making.
+    # In my family we use the words "best move" when we talk about chess.
+    # In my family we use the words "best time" when we talk about sleep theory.
+    # What is the best time to go to sleep? I don't know.
+    # I think about this question a lot...
+    # It might be 8pm...
