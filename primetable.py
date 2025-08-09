@@ -6,8 +6,6 @@ import time
 table = []
 
 def generate(n):
-    if len(table) >= n:
-        return False
     size = 10 * n
     s = sieve(n, size)
     while s.count('P') < n:
@@ -15,7 +13,6 @@ def generate(n):
         s = sieve(n, size)
     table.clear()
     table.extend([i for i, j in enumerate(s) if j == 'P'][0:n])
-    return True
 
 def sieve(n, size):
     arr = ['P'] * size
@@ -57,14 +54,14 @@ def main():
         print("Unable to parse n as a positive integer")
         return
     load()
+    if len(table) >= n:
+        print("The existing table is sufficient")
+        return
     st = time.time()
-    modified = generate(n)
+    generate(n)
     te = time.time() - st
-    if modified:
-        save()
-        print("Created a prime table with %d primes in %s seconds" %(n, te))
-    else:
-        print("The existing table is sufficient.")
+    save()
+    print("Created a prime table with %d primes in %s seconds" %(n, te))
 
 if __name__ == "__main__":
     main()
