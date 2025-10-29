@@ -1,6 +1,6 @@
 import parser
 import util
-import sys
+import argparse
 
 def decrypt(ciphertext, key):
     message = ""
@@ -9,7 +9,7 @@ def decrypt(ciphertext, key):
     end = 0
     i = 0
     while start < len(ciphertext):
-        (n, d) = key[i % keylen]
+        (n, e, d) = key[i % keylen]
         size = util.size(n)
         end = start + size
         substr = ciphertext[start:end]
@@ -20,15 +20,21 @@ def decrypt(ciphertext, key):
     return message
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python decrypt.py <cipherfile>")
-        sys.exit(0)
-    cipherfile = open(sys.argv[1], "rb")
+    argparser = argparse.ArgumentParser(prog="decrypt.py", description="Decrypt a message")
+    argparser.add_argument("-c", "--cipherfile", type=str, required=True)
+    argparser.add_argument("-k", "--keyfile", type=str, default="key.txt")
+    argparser.add_argument("-o", "--output", type=str)
+    args = argparser.parse_args()
+    cipherfile = open(args.cipherfile, "rb")
     ciphertext = cipherfile.read()
     ciphertext = ciphertext.decode("utf-8")
-    key = parser.parse_key("privatekey.txt")
+    key = parser.parse_key(args.keyfile)
     msg = decrypt(ciphertext, key)
-    print(msg, end='')
+    if args.output:
+        outfile = open(args.output, "w")
+        outfile.write(msg)
+    else:
+        print(msg, end="")
 
 if __name__ == "__main__":
     main()

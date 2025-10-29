@@ -3,7 +3,7 @@ import keytable
 import random
 import argparse
 
-def create_key_pair(keylen, tmin, tmax):
+def create_key_pair(keylen, tmin, tmax, filepath):
     keytable.load()
     filtered = {}
     for k,v in keytable.table.items():
@@ -13,28 +13,29 @@ def create_key_pair(keylen, tmin, tmax):
         raise ValueError("There aren't enough keys in the key table that meet the criteria")
     nvalues = list(filtered.keys())
     nvalues = random.sample(nvalues, keylen)
-    with open("publickey.txt", "w") as publickey, open("privatekey.txt", "w") as privatekey:
+    with open(filepath, "w") as keyfile:
         for nvalue in nvalues:
             (n, p, q, phi, e, d) = filtered[nvalue]
-            publickey.write("n=%d e=%d\n" %(n, e))
-            privatekey.write("n=%d d=%d\n" %(n, d))
+            keyfile.write("n=%d e=%d d=%d\n" %(n, e, d))
 
 def main():
     primetable.load()
     parser = argparse.ArgumentParser(prog="keygen.py", description="Create a public key and a private key", epilog="Thanks for reading")
     parser.add_argument("-kl", "--keylength", type=int, required=True)
-    parser.add_argument("-min", "--min_threshold", type=float, default=0)
-    parser.add_argument("-max", "--max_threshold", type=float, default=primetable.get(-1))
+    parser.add_argument("-tmin", "--min_threshold", type=float, default=0)
+    parser.add_argument("-tmax", "--max_threshold", type=float, default=primetable.get(-1))
+    parser.add_argument("-o", "--output", type=str, default="key.txt")
     args = parser.parse_args()
     keylen = args.keylength
     tmin = int(args.min_threshold)
     tmax = int(args.max_threshold)
+    filepath = args.output
     try:
-        create_key_pair(keylen, tmin, tmax)
+        create_key_pair(keylen, tmin, tmax, filepath)
     except Exception as err:
         print(err)
         return
-    print("Created key pair in publickey.txt and privatekey.txt")
+    print("Created keyfile %s" %filepath)
     
 if __name__ == "__main__":
     main()

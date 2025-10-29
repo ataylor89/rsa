@@ -2,7 +2,6 @@ import primetable
 import util
 import math
 import pickle
-import sys
 import os
 import random
 import time
@@ -97,8 +96,8 @@ def main():
     primetable.load()
     parser = argparse.ArgumentParser(prog="keytable.py", description="Generate RSA keys", epilog="Thanks for reading")
     parser.add_argument("-n", "--numberofkeys", type=int, required=True)
-    parser.add_argument("-min", "--min_threshold", type=float, default=0)
-    parser.add_argument("-max", "--max_threshold", type=float, default=primetable.get(-1))
+    parser.add_argument("-tmin", "--min_threshold", type=float, default=0)
+    parser.add_argument("-tmax", "--max_threshold", type=float, default=primetable.get(-1))
     args = parser.parse_args()
     numkeys = args.numberofkeys
     tmin = int(args.min_threshold)

@@ -3,5 +3,6 @@ def parse_key(path):
     file = open(path, "r")
     for line in file:
         tokens = line.split()
-        key.append((int(tokens[0][2:]), int(tokens[1][2:])))
+        n, e, d = int(tokens[0][2:]), int(tokens[1][2:]), int(tokens[2][2:])
+        key.append((n, e, d))
     return key
