@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+import os
 import parser
 import util
 import argparse
@@ -15,13 +18,20 @@ def encrypt(msg, key):
     return ciphertext
 
 def main():
+    home_dir = os.path.expanduser("~")
+    default_key = f"{home_dir}/keys/rsa.txt"
     argparser = argparse.ArgumentParser(prog="encrypt.py", description="Encrypt a message")
-    argparser.add_argument("-m", "--msgfile", type=str, required=True)
-    argparser.add_argument("-k", "--keyfile", type=str, default="key.txt")
+    group = argparser.add_mutually_exclusive_group(required=True)
+    group.add_argument("message", type=str, nargs="?")
+    group.add_argument("-m", "--msgfile", type=str)
+    argparser.add_argument("-k", "--keyfile", type=str, default=default_key)
     argparser.add_argument("-o", "--output", type=str)
     args = argparser.parse_args()
-    msgfile = open(args.msgfile, "r")
-    msg = msgfile.read()
+    if args.msgfile:
+        with open(args.msgfile, "r") as msgfile:
+            msg = msgfile.read()
+    else:
+        msg = args.message
     key = parser.parse_key(args.keyfile)
     ciphertext = encrypt(msg, key)
     if args.output:

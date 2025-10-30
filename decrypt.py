@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+import os
 import parser
 import util
 import argparse
@@ -20,9 +23,11 @@ def decrypt(ciphertext, key):
     return message
 
 def main():
+    home_dir = os.path.expanduser("~")
+    default_key = f"{home_dir}/keys/rsa.txt"
     argparser = argparse.ArgumentParser(prog="decrypt.py", description="Decrypt a message")
     argparser.add_argument("-c", "--cipherfile", type=str, required=True)
-    argparser.add_argument("-k", "--keyfile", type=str, default="key.txt")
+    argparser.add_argument("-k", "--keyfile", type=str, default=default_key)
     argparser.add_argument("-o", "--output", type=str)
     args = argparser.parse_args()
     cipherfile = open(args.cipherfile, "rb")
