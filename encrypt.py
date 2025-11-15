@@ -6,8 +6,8 @@ import util
 import argparse
 
 def encrypt(msg, key):
-    ciphertext = ""
-    codes = msg.encode("utf-8")
+    ciphertext = ''
+    codes = msg.encode('utf-8')
     keylen = len(key)
     for i in range(0, len(codes)):
         (n, e, d) = key[i % keylen]
@@ -18,27 +18,27 @@ def encrypt(msg, key):
     return ciphertext
 
 def main():
-    home_dir = os.path.expanduser("~")
-    default_key = f"{home_dir}/keys/rsa.txt"
-    argparser = argparse.ArgumentParser(prog="encrypt.py", description="Encrypt a message")
+    home_dir = os.path.expanduser('~')
+    default_key = f'{home_dir}/Github/rsa/keys/default.txt'
+    argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message')
     group = argparser.add_mutually_exclusive_group(required=True)
-    group.add_argument("message", type=str, nargs="?")
-    group.add_argument("-m", "--msgfile", type=str)
-    argparser.add_argument("-k", "--keyfile", type=str, default=default_key)
-    argparser.add_argument("-o", "--output", type=str)
+    group.add_argument('message', type=str, nargs='?')
+    group.add_argument('-i', '--inputfile', type=str)
+    argparser.add_argument('-k', '--keyfile', type=str, default=default_key)
+    argparser.add_argument('-o', '--outputfile', type=str)
     args = argparser.parse_args()
-    if args.msgfile:
-        with open(args.msgfile, "r") as msgfile:
-            msg = msgfile.read()
+    if args.inputfile:
+        with open(args.inputfile, 'r') as file:
+            msg = file.read()
     else:
         msg = args.message
     key = parser.parse_key(args.keyfile)
     ciphertext = encrypt(msg, key)
-    if args.output:
-        outfile = open(args.output, "w")
-        outfile.write(ciphertext)
+    if args.outputfile:
+        with open(args.outputfile, 'w') as file:
+            file.write(ciphertext)
     else:
-        print(ciphertext, end="")
+        print(ciphertext, end='')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
