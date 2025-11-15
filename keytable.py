@@ -8,7 +8,7 @@ import time
 import argparse
 
 table = {}
-test_message = "hello world! my name is andrew"
+test_message = 'hello world! my name is andrew'
 
 def generate(numkeys, tmin, tmax):
     count = 0
@@ -24,7 +24,7 @@ def generate(numkeys, tmin, tmax):
             break
 
     if startindex == -1:
-        raise ValueError("tmin is too high")
+        raise ValueError('tmin is too high')
 
     if endindex == -1:
         endindex = primetable.size() - 1
@@ -40,31 +40,31 @@ def generate(numkeys, tmin, tmax):
         q = primetable.get(j)
         n = p * q
 
-        print("n = %d, p = %d, q = %d" %(n, p, q))
+        print('n = %d, p = %d, q = %d' %(n, p, q))
 
         if n in table:
             continue
 
         phi = math.lcm(p-1, q-1)
 
-        print("phi = %d" %phi)
+        print('phi = %d' %phi)
 
         e = 0
         for e in range(2, phi):
             if math.gcd(e, phi) == 1:
                 break
 
-        print("e = %d" %e)
+        print('e = %d' %e)
 
         d = 0
         for d in range(2, phi):
             if (d * e) % phi == 1:
                 break
 
-        print("d = %d" %d)
+        print('d = %d' %d)
 
         if test(n, e, d):
-            print("Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)" %(n, p, q, phi, e, d))
+            print('Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)' %(n, p, q, phi, e, d))
             table[n] = (n, p, q, phi, e, d)
             count += 1
 
@@ -83,21 +83,21 @@ def test(n, e, d):
 
 def load(path='keytable.pickle'):
     if os.path.exists(path):
-        with open(path, "rb") as file:
+        with open(path, 'rb') as file:
             table.clear()
             table.update(pickle.load(file))
 
 def save(path='keytable.pickle'):
     if len(table) > 0:
-        with open(path, "wb") as file:
+        with open(path, 'wb') as file:
             pickle.dump(table, file)
 
 def main():
     primetable.load()
-    parser = argparse.ArgumentParser(prog="keytable.py", description="Generate RSA keys", epilog="Thanks for reading")
-    parser.add_argument("-n", "--numberofkeys", type=int, required=True)
-    parser.add_argument("-tmin", "--min_threshold", type=float, default=0)
-    parser.add_argument("-tmax", "--max_threshold", type=float, default=primetable.get(-1))
+    parser = argparse.ArgumentParser(prog='keytable.py', description='Generate RSA keys')
+    parser.add_argument('-n', '--numberofkeys', type=int, required=True)
+    parser.add_argument('-tmin', '--min_threshold', type=float, default=0)
+    parser.add_argument('-tmax', '--max_threshold', type=float, default=primetable.get(-1))
     args = parser.parse_args()
     numkeys = args.numberofkeys
     tmin = int(args.min_threshold)
@@ -111,7 +111,7 @@ def main():
         return
     te = time.time() - st
     save()
-    print("Generated %d keys for tmin=%d and tmax=%d in %s seconds" %(numkeys, tmin, tmax, te))
+    print('Generated %d keys for tmin=%d and tmax=%d in %s seconds' %(numkeys, tmin, tmax, te))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
