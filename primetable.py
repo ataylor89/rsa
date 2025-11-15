@@ -34,34 +34,34 @@ def size():
 
 def load(path='primetable.pickle'):
     if os.path.exists(path):
-        with open(path, "rb") as file:
+        with open(path, 'rb') as file:
             table.clear()
             table.extend(pickle.load(file))
 
 def save(path='primetable.pickle'):
     if len(table) > 0:
-        with open(path, "wb") as file:
+        with open(path, 'wb') as file:
             pickle.dump(table, file)
 
 def main():
-    parser = argparse.ArgumentParser(prog="primetable.py", description="Generate a prime table", epilog="Thanks for reading")
-    parser.add_argument("-n", "--numberofprimes", type=float, default=1e4)
+    parser = argparse.ArgumentParser(prog='primetable.py', description='Create a prime table')
+    parser.add_argument('-n', '--numberofprimes', type=float, default=1e4)
     args = parser.parse_args()
     try:
         n = int(args.numberofprimes)
         assert n > 0
     except:
-        print("Unable to parse the command-line argument as a positive integer")
+        print('Unable to parse the command-line argument as a positive integer')
         return
     load()
     if len(table) >= n:
-        print("The existing table is sufficient")
+        print('The existing table is sufficient')
         return
     st = time.time()
     generate(n)
     te = time.time() - st
     save()
-    print("Created a prime table with %d primes in %s seconds" %(n, te))
+    print('Created a prime table with %d primes in %s seconds' %(n, te))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
