@@ -67,6 +67,8 @@ def generate(numkeys, tmin, tmax):
             print('Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)' %(n, p, q, phi, e, d))
             table[n] = (n, p, q, phi, e, d)
             count += 1
+        else:
+            print(f'The key n={n}, p={p}, q={q}, e={e}, d={d}, phi={phi} did not pass the test')
 
 def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
