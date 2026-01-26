@@ -97,7 +97,7 @@ def save(path='keytable.pickle'):
 def main():
     primetable.load()
     parser = argparse.ArgumentParser(prog='keytable.py', description='Generate RSA keys')
-    parser.add_argument('-n', '--numberofkeys', type=int, required=True)
+    parser.add_argument('numberofkeys', type=int)
     parser.add_argument('-tmin', '--min_threshold', type=float, default=0)
     parser.add_argument('-tmax', '--max_threshold', type=float, default=primetable.get(-1))
     args = parser.parse_args()

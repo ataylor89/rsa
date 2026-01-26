@@ -45,7 +45,7 @@ def save(path='primetable.pickle'):
 
 def main():
     parser = argparse.ArgumentParser(prog='primetable.py', description='Create a prime table')
-    parser.add_argument('-n', '--numberofprimes', type=float, default=1e4)
+    parser.add_argument('numberofprimes', type=float, default=1e4, nargs='?')
     args = parser.parse_args()
     try:
         n = int(args.numberofprimes)
