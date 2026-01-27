@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import os
 import parser
 import util
 import argparse
+import sys
 
 def decrypt(ciphertext, key):
     message = ''
@@ -23,9 +23,9 @@ def decrypt(ciphertext, key):
     return message
 
 def main():
-    home_dir = os.path.expanduser('~')
-    default_key = f'{home_dir}/Github/rsa/keys/default.txt'
-    argparser = argparse.ArgumentParser(prog='decrypt.py', description='Decrypt a message')
+    base_dir = sys.path[0]
+    default_key = base_dir + '/keys/defaultkey.txt'
+    argparser = argparse.ArgumentParser(prog='decrypt.py', description='Decrypt a message using the RSA algorithm')
     argparser.add_argument('-i', '--inputfile', type=str, required=True)
     argparser.add_argument('-k', '--keyfile', type=str, default=default_key)
     argparser.add_argument('-o', '--outputfile', type=str)

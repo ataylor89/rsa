@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import os
 import parser
 import util
 import argparse
+import sys
 
 def encrypt(msg, key):
     ciphertext = ''
@@ -18,9 +18,9 @@ def encrypt(msg, key):
     return ciphertext
 
 def main():
-    home_dir = os.path.expanduser('~')
-    default_key = f'{home_dir}/Github/rsa/keys/default.txt'
-    argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message')
+    base_dir = sys.path[0]
+    default_key = base_dir + '/keys/defaultkey.txt'
+    argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message using the RSA algorithm')
     group = argparser.add_mutually_exclusive_group(required=True)
     group.add_argument('message', type=str, nargs='?')
     group.add_argument('-i', '--inputfile', type=str)
