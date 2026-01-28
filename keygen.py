@@ -4,7 +4,7 @@ import keytable
 import random
 import argparse
 
-def create_key_pair(keylen, tmin, tmax):
+def create_key(keylen, tmin, tmax):
     if keylen < 1:
         raise KeyLengthError('The key length must be a positive integer')
     if tmin < 1056:
@@ -38,7 +38,7 @@ def main():
     tmin = int(args.min_threshold)
     tmax = int(args.max_threshold)
     try:
-        key = create_key_pair(keylen, tmin, tmax)
+        key = create_key(keylen, tmin, tmax)
     except Exception as err:
         print(err)
         return
