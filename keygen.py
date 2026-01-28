@@ -1,4 +1,4 @@
-from exceptions import InvalidKeyLengthError, InvalidThresholdError, NotEnoughKeysError
+from exceptions import KeyLengthError, ThresholdError, NotEnoughKeysError
 import primetable
 import keytable
 import random
@@ -6,13 +6,13 @@ import argparse
 
 def create_key_pair(keylen, tmin, tmax):
     if keylen < 1:
-        raise InvalidKeyLengthError('The key length must be a positive integer')
+        raise KeyLengthError('The key length must be a positive integer')
     if tmin < 0:
-        raise InvalidThresholdError('tmin must be a nonnegative integer')
+        raise ThresholdError('tmin must be a nonnegative integer')
     if tmax < 0:
-        raise InvalidThresholdError('tmax must be a nonnegative integer')
+        raise ThresholdError('tmax must be a nonnegative integer')
     if tmin > tmax:
-        raise InvalidThresholdError('tmin must be less than or equal to tmax')
+        raise ThresholdError('tmin must be less than or equal to tmax')
     keytable.load()
     filtered = {}
     for k,v in keytable.table.items():
