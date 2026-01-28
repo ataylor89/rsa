@@ -109,7 +109,7 @@ def main():
     parser = argparse.ArgumentParser(prog='keytable.py', description='Generate RSA keys')
     parser.add_argument('numberofkeys', type=int)
     parser.add_argument('-tmin', '--min_threshold', type=float, default=1056)
-    parser.add_argument('-tmax', '--max_threshold', type=float, default=primetable.get(-1))
+    parser.add_argument('-tmax', '--max_threshold', type=float, default=1e4)
     args = parser.parse_args()
     numkeys = args.numberofkeys
     tmin = int(args.min_threshold)
