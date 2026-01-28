@@ -1,3 +1,4 @@
+from exceptions import InvalidThresholdError
 import primetable
 import util
 import math
@@ -11,6 +12,15 @@ table = {}
 test_message = 'hello world! my name is andrew'
 
 def generate(numkeys, tmin, tmax):
+    if numkeys < 1:
+        raise ValueError('The number of keys must be a positive integer')
+    if tmin < 0:
+        raise InvalidThresholdError('tmin must be a nonnegative integer')
+    if tmax < 0:
+        raise InvalidThresholdError('tmax must be a nonnegative integer')
+    if tmin > tmax:
+        raise InvalidThresholdError('tmin must be less than or equal to tmax')
+
     count = 0
     startindex = -1
     endindex = -1
