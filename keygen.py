@@ -7,10 +7,8 @@ import argparse
 def create_key_pair(keylen, tmin, tmax):
     if keylen < 1:
         raise KeyLengthError('The key length must be a positive integer')
-    if tmin < 0:
-        raise ThresholdError('tmin must be a nonnegative integer')
-    if tmax < 0:
-        raise ThresholdError('tmax must be a nonnegative integer')
+    if tmin < 1056:
+        raise ThresholdError('tmin must be greater than or equal to 1056')
     if tmin > tmax:
         raise ThresholdError('tmin must be less than or equal to tmax')
     keytable.load()
