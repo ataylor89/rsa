@@ -17,3 +17,8 @@ class NotEnoughKeysError(Exception):
 
     def __init__(self, message='Not enough keys'):
         super().__init__(message)
+
+class InsufficientPrimeTableError(Exception):
+
+    def __init__(self, message='Insufficient prime table'):
+        super().__init__(message)

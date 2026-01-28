@@ -1,4 +1,4 @@
-from exceptions import ThresholdError
+from exceptions import ThresholdError, InsufficientPrimeTableError
 import primetable
 import util
 import math
@@ -23,16 +23,16 @@ def generate(numkeys, tmin, tmax):
     startindex = -1
     endindex = -1
 
-    for i in range(0, primetable.size()):
+    for i in range(primetable.size()):
         if startindex < 0 and primetable.get(i) >= tmin:
             startindex = i
-        if endindex < 0 and primetable.get(i) >= tmax:
-            endindex = i
+        if endindex < 0 and primetable.get(i) > tmax:
+            endindex = i - 1
         if startindex > 0 and endindex > 0:
             break
 
     if startindex == -1:
-        raise ValueError('tmin is too high')
+        raise InsufficientPrimeTableError('The prime table does not have any primes that meet or exceed the minimum threshold')
 
     if endindex == -1:
         endindex = primetable.size() - 1
