@@ -1,0 +1,2 @@
+This is a placeholder file.
+The primetable.pickle and keytable.pickle databases can be stored in this directory.

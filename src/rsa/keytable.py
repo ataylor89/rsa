@@ -1,9 +1,7 @@
-from exceptions import ThresholdError, InsufficientPrimeTableError
-import primetable
-import util
+from rsa import project_root, primetable, util
+from rsa.exceptions import ThresholdError, InsufficientPrimeTableError
 import math
 import pickle
-import os
 import random
 import time
 import argparse
@@ -91,14 +89,16 @@ def test(n, e, d):
 
     return codes == decrypted
 
-def load(path='keytable.pickle'):
-    if os.path.exists(path):
+def load():
+    path = project_root / 'database' / 'keytable.pickle'
+    if path.is_file():
         with open(path, 'rb') as file:
             table.clear()
             table.update(pickle.load(file))
 
-def save(path='keytable.pickle'):
+def save():
     if len(table) > 0:
+        path = project_root / 'database' / 'keytable.pickle'
         with open(path, 'wb') as file:
             pickle.dump(table, file)
 

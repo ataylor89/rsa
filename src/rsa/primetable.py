@@ -1,5 +1,5 @@
+from rsa import project_root
 import pickle
-import os
 import time
 import argparse
 
@@ -32,13 +32,15 @@ def get(n):
 def size():
     return len(table)
 
-def load(path='primetable.pickle'):
-    if os.path.exists(path):
+def load():
+    path = project_root / 'database' / 'primetable.pickle'
+    if path.is_file():
         with open(path, 'rb') as file:
             table.clear()
             table.extend(pickle.load(file))
 
-def save(path='primetable.pickle'):
+def save():
+    path = project_root / 'database' / 'primetable.pickle'
     if len(table) > 0:
         with open(path, 'wb') as file:
             pickle.dump(table, file)

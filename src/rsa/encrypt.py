@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-import parser
-import util
+from rsa import default_key, parser, util
 import argparse
-import sys
 
 def encrypt(msg, key):
     ciphertext = ''
@@ -18,8 +16,6 @@ def encrypt(msg, key):
     return ciphertext
 
 def main():
-    base_dir = sys.path[0]
-    default_key = base_dir + '/keys/defaultkey.txt'
     argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message using the RSA algorithm')
     group = argparser.add_mutually_exclusive_group(required=True)
     group.add_argument('message', type=str, nargs='?')

@@ -1,4 +1,4 @@
-from exceptions import KeyFileError
+from rsa.exceptions import KeyFileError
 
 def parse_key(path):
     key = []
