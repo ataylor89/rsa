@@ -14,7 +14,7 @@ keygen.py | Creates an RSA key using the key table and the prime table
 parser.py | Parses an RSA key, like the one in keys/defaultkey.txt, and returns a list of (n, e, d) tuples
 util.py | Contains many useful utility functions, like power_mod_n, which are used in encryption and decryption
 exceptions.py | Defines different exceptions that can be raised by the code in this package
-__init__.py | Contains the initialization code, like setting the project root, and setting the defaults
+\_\_init\_\_.py | Contains the initialization code, like setting the project root, and setting the defaults
 encrypt.py | Encrypts a message using the public key
 decrypt.py | Decrypts an encrypted messsage using the private key
 
