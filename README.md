@@ -89,7 +89,7 @@ Now we can decrypt the encrypted message using the default key file.
 
 I just tried it, and it works. It prints "hello world, it's january 28, 2026" to standard output.
 
-The path to the default key file is actually set in the initialization code, in the file __init__.py.
+The path to the default key file is actually set in the initialization code, in the file \_\_init\_\_.py.
 
 I wanted to show this alternative, because it saves time.
 
