@@ -46,7 +46,7 @@ def save():
             pickle.dump(table, file)
 
 def main():
-    parser = argparse.ArgumentParser(prog='primetable.py', description='Create a prime table')
+    parser = argparse.ArgumentParser(prog='primetable.py', description='Generate primes and store them in a prime table')
     parser.add_argument('numberofprimes', type=float, default=1e4, nargs='?')
     args = parser.parse_args()
     try:

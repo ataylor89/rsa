@@ -104,7 +104,7 @@ def save():
 
 def main():
     primetable.load()
-    parser = argparse.ArgumentParser(prog='keytable.py', description='Generate RSA keys')
+    parser = argparse.ArgumentParser(prog='keytable.py', description='Generate (n, e, d) tuples and store them in a key table')
     parser.add_argument('numberofkeys', type=int)
     parser.add_argument('-tmin', '--min_threshold', type=float, default=1056)
     parser.add_argument('-tmax', '--max_threshold', type=float, default=1e4)
