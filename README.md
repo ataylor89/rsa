@@ -36,7 +36,7 @@ To generate a keytable and add 64 keys to the keytable, we can use the following
 
 This command uses the default values for tmin and tmax (1056 and 10,000).
 
-The reason why 1056 is the default value is that the modulus (n-value) has to exceed the size of the Unicode code space, which is 0x110000 in hex or 1,114,112 in decimal. Note that 1056^22 = 1,115,136, which exceeds the size of the Unicode code space.
+The reason why 1056 is the default value is that the modulus (n-value) has to exceed the size of the Unicode code space, which is 0x110000 in hex or 1,114,112 in decimal. Note that 1056^2 = 1,115,136, which exceeds the size of the Unicode code space.
 
 In other words, the codepoint for each Unicode character should be less than the modulus (that is, the n value).
 
