@@ -1,5 +1,9 @@
-from rsa import project_root, primetable, util
-from rsa.exceptions import ThresholdError, InsufficientPrimeTableError
+#!/usr/bin/env python3
+
+from settings import project_root
+from exceptions import ThresholdError, InsufficientPrimeTableError
+import primetable
+import util
 import math
 import pickle
 import random

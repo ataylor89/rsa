@@ -1,4 +1,6 @@
-from rsa import project_root
+#!/usr/bin/env python3
+
+from settings import project_root
 import pickle
 import time
 import argparse

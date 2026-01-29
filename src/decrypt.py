@@ -1,4 +1,8 @@
-from rsa import default_key_path, parser, util
+#!/usr/bin/env python3
+
+from settings import default_key_path
+import parser
+import util
 import argparse
 
 def decrypt(ciphertext, key):

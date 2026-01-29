@@ -1,5 +1,9 @@
-from rsa import default_generated_key_path, primetable, keytable
-from rsa.exceptions import KeyLengthError, ThresholdError, NotEnoughKeysError
+#!/usr/bin/env python3
+
+from settings import default_generated_key_path
+from exceptions import KeyLengthError, ThresholdError, NotEnoughKeysError
+import primetable
+import keytable
 import random
 import argparse
 
