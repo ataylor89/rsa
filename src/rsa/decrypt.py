@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from rsa import default_key, parser, util
 import argparse
 
