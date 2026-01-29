@@ -1,4 +1,4 @@
-from rsa import default_key, parser, util
+from rsa import default_key_path, parser, util
 import argparse
 
 def decrypt(ciphertext, key):
@@ -22,7 +22,7 @@ def decrypt(ciphertext, key):
 def main():
     argparser = argparse.ArgumentParser(prog='decrypt.py', description='Decrypt a message using the RSA algorithm')
     argparser.add_argument('-i', '--inputfile', type=str, required=True)
-    argparser.add_argument('-k', '--keyfile', type=str, default=default_key)
+    argparser.add_argument('-k', '--keyfile', type=str, default=default_key_path)
     argparser.add_argument('-o', '--outputfile', type=str)
     args = argparser.parse_args()
     with open(args.inputfile, 'rb') as file:

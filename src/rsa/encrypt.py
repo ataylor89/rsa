@@ -1,4 +1,4 @@
-from rsa import default_key, parser, util
+from rsa import default_key_path, parser, util
 import argparse
 
 def encrypt(msg, key):
@@ -18,7 +18,7 @@ def main():
     group = argparser.add_mutually_exclusive_group(required=True)
     group.add_argument('message', type=str, nargs='?')
     group.add_argument('-i', '--inputfile', type=str)
-    argparser.add_argument('-k', '--keyfile', type=str, default=default_key)
+    argparser.add_argument('-k', '--keyfile', type=str, default=default_key_path)
     argparser.add_argument('-o', '--outputfile', type=str)
     args = argparser.parse_args()
     if args.inputfile:
