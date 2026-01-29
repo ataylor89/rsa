@@ -2,8 +2,6 @@
 
 ## Overview
 
-The files in this repository can be run as modules. One advantage of placing the Python code inside of a package, is that it allows me to write initialization code in the file \_\_init\_\_.py. I use this file to declare some important variables, like project_root, default values, etc.
-
 Before I begin a section on usage, let's give an overview of the project.
 
 File | Description
@@ -14,7 +12,7 @@ keygen.py | Creates an RSA key using the key table and the prime table
 parser.py | Parses an RSA key, like the one in keys/defaultkey.txt, and returns a list of (n, e, d) tuples
 util.py | Contains many useful utility functions, like power_mod_n, which are used in encryption and decryption
 exceptions.py | Defines different exceptions that can be raised by the code in this package
-\_\_init\_\_.py | Contains the initialization code, like setting the project root, and setting the defaults
+settings.py | Contains some useful settings, like the project root directory, the default key path, and the default generated key path
 encrypt.py | Encrypts a message using the public key
 decrypt.py | Decrypts an encrypted messsage using the private key
 
@@ -23,7 +21,7 @@ decrypt.py | Decrypts an encrypted messsage using the private key
 To generate a primetable of 10,000 primes, we can use the following commands:
 
     % cd ~/Github/rsa/src
-    % python -m rsa.primetable 1e4
+    % python primetable.py 1e4
 
 The primetable that we generated should be written to ~/Github/rsa/database/primetable.pickle.
 
@@ -32,7 +30,7 @@ If the existing primetable is already sufficient, then the file is not overwritt
 To generate a keytable and add 64 keys to the keytable, we can use the following commands:
 
     % cd ~/Github/rsa/src
-    % python -m rsa.keytable 64
+    % python keytable.py 64
 
 This command uses the default values for tmin and tmax (1056 and 10,000).
 
@@ -45,7 +43,7 @@ Keep in mind that a public key is a series of (n, e) tuples, and a private key i
 To generate an RSA key consisting of 64 (n, e, d) tuples, we can use the following commands:
 
     % cd ~/Github/rsa/src
-    % python -m rsa.keygen 64
+    % python keygen.py 64
 
 Once again, 1056 is the default value for tmin, because we want the n-value of each (n, e, d) tuple to exceed 0x110000.
 
@@ -58,14 +56,14 @@ Now, we can use our generated key to encrypt and decrypt messages.
 To encrypt a message using the generated key, we can use the following commands:
 
     % cd ~/Github/rsa/src
-    % python -m rsa.encrypt -k ~/Github/rsa/keys/generated-key.txt "hello world" -o cipher.txt
+    % python encrypt.py -k ~/Github/rsa/keys/generated-key.txt "hello world" -o cipher.txt
 
 This writes the encrypted message to the file ~/Github/rsa/src/cipher.txt.
 
 To decrypt the encrypted message, using our generated key, we can use the following commands:
 
     % cd ~/Github/rsa/src
-    % python -m rsa.decrypt -k ~/Github/rsa/keys/generated-key.txt -i cipher.txt
+    % python decrypt.py -k ~/Github/rsa/keys/generated-key.txt -i cipher.txt
 
 It should output "hello world".
 
@@ -80,16 +78,16 @@ We can actually save time by using the default key file.
 Let's try encrypting a message using the default key file.
 
     % cd ~/Github/rsa/src
-    % python -m rsa.encrypt "hello world, it's january 28, 2026" -o cipher2.txt
+    % python encrypt.py "hello world, it's january 28, 2026" -o cipher2.txt
 
 Now we can decrypt the encrypted message using the default key file.
 
     % cd ~/Github/rsa/src
-    % python -m rsa.decrypt -i cipher2.txt
+    % python decrypt.py -i cipher2.txt
 
 I just tried it, and it works. It prints "hello world, it's january 28, 2026" to standard output.
 
-The path to the default key file is actually set in the initialization code, in the file \_\_init\_\_.py.
+The path to the default key file is actually configured in settings.py.
 
 I wanted to show this alternative, because it saves time.
 
