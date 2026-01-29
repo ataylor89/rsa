@@ -87,6 +87,8 @@ Now we can decrypt the encrypted message using the default key file.
 
 I just tried it, and it works. It prints "hello world, it's january 28, 2026" to standard output.
 
+(In case you're wondering, the path to the default key file is actually a setting configured in settings.py.)
+
 I wanted to show this alternative, because it saves time.
 
 To summarize, we have given instructions on how to generate a primetable using primetable.py, how to maintain a keytable using keytable.py, how to generate a key file using keygen.py, how to encrypt a message using encrypt.py, and how to decrypt a message using decrypt.py.
