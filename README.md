@@ -2,7 +2,7 @@
 
 ## Overview
 
-The files in this repository can be run as modules. One advantage of placing the Python code inside of a package, is that it allows me to write initialization code in the file __init__.py. I use this file to declare some important variables, like project_root, default values, etc.
+The files in this repository can be run as modules. One advantage of placing the Python code inside of a package, is that it allows me to write initialization code in the file \_\_init\_\_.py. I use this file to declare some important variables, like project_root, default values, etc.
 
 Before I begin a section on usage, let's give an overview of the project.
 
