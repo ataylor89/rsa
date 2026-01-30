@@ -1,7 +1,7 @@
 import math
 
 def isprime(n):
-    if n < 2:
+    if not isinstance(n, int) or n < 2:
         return False
 
     sqrt_n = int(math.sqrt(n))

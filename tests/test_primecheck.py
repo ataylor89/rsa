@@ -31,3 +31,7 @@ class TestPrimecheck(TestCase):
         self.assertFalse(isprime(616363))
         self.assertFalse(isprime(787267))
         self.assertFalse(isprime(847366))
+
+    def test_non_integers(self):
+        self.assertFalse(isprime(3.14159))
+        self.assertFalse(isprime(2.71828))
