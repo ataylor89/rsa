@@ -29,6 +29,7 @@ class TestPrimetable(TestCase):
     def verify_sieve(self, size):
         sieve = primetable.sieve(size)
         sieve_length = len(sieve)
+        assert sieve_length == size
         for i in range(sieve_length):
             if i == 0 or i == 1:
                 assert sieve[i] == 'N'
