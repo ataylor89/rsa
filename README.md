@@ -11,8 +11,8 @@ keytable.py | Maintains a key table in database/keytable.pickle and adds keys to
 keygen.py | Creates an RSA key using the key table and the prime table
 parser.py | Parses an RSA key, like the one in keys/defaultkey.txt, and returns a list of (n, e, d) tuples
 util.py | Contains many useful utility functions, like power_mod_n, which are used in encryption and decryption
-primecheck.py | Contains an algorithm for determining whether a number is prime, which is useful in some of the unit tests
 exceptions.py | Defines different exceptions that can be raised by the code in this package
+primecheck.py | Contains an algorithm for determining whether a number is prime, which is useful in some of the unit tests
 settings.py | Contains some useful settings, like the project root directory, the default key path, and the default generated key path
 encrypt.py | Encrypts a message using the public key
 decrypt.py | Decrypts an encrypted messsage using the private key
