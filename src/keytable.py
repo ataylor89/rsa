@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from settings import project_root
+from settings import project_root, default_tmin, default_tmax
 from exceptions import ThresholdError, InsufficientPrimeTableError
 import primetable
 import util
@@ -115,8 +115,8 @@ def main():
     primetable.load()
     parser = argparse.ArgumentParser(prog='keytable.py', description='Generate (n, e, d) tuples and store them in a key table')
     parser.add_argument('numberofkeys', type=int)
-    parser.add_argument('-tmin', '--min_threshold', type=float, default=1056)
-    parser.add_argument('-tmax', '--max_threshold', type=float, default=1e4)
+    parser.add_argument('-tmin', '--min_threshold', type=float, default=default_tmin)
+    parser.add_argument('-tmax', '--max_threshold', type=float, default=default_tmax)
     args = parser.parse_args()
     numkeys = args.numberofkeys
     tmin = int(args.min_threshold)
