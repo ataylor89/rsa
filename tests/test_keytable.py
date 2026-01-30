@@ -22,7 +22,6 @@ class TestKeytable(TestCase):
                     break
             assert e == ee
 
-
             dd = 0
             for dd in range(2, phi):
                 if (dd * ee) % phi == 1:
