@@ -13,7 +13,7 @@ import argparse
 table = {}
 test_message = 'hello world! my name is andrew'
 
-def generate(numkeys, tmin, tmax):
+def generate(numkeys, tmin, tmax, verbose=True):
     if numkeys < 1:
         raise ValueError('The number of keys must be a positive integer')
     if tmin < 1056:
@@ -50,31 +50,36 @@ def generate(numkeys, tmin, tmax):
         q = primetable.get(j)
         n = p * q
 
-        print('n = %d, p = %d, q = %d' %(n, p, q))
+        if verbose:
+            print('n = %d, p = %d, q = %d' %(n, p, q))
 
         if n in table:
             continue
 
         phi = math.lcm(p-1, q-1)
 
-        print('phi = %d' %phi)
+        if verbose:
+            print('phi = %d' %phi)
 
         e = 0
         for e in range(2, phi):
             if math.gcd(e, phi) == 1:
                 break
 
-        print('e = %d' %e)
+        if verbose:
+            print('e = %d' %e)
 
         d = 0
         for d in range(2, phi):
             if (d * e) % phi == 1:
                 break
 
-        print('d = %d' %d)
+        if verbose:
+            print('d = %d' %d)
 
         if test(n, e, d):
-            print('Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)' %(n, p, q, phi, e, d))
+            if verbose:
+                print('Adding key (n=%d, p=%d, q=%d, phi=%d, e=%d, d=%d)' %(n, p, q, phi, e, d))
             table[n] = (n, p, q, phi, e, d)
             count += 1
         else:
