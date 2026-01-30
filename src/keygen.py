@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from settings import default_generated_key_path
+from settings import default_keylength, default_tmin, default_generated_key_path
 from exceptions import KeyLengthError, ThresholdError, NotEnoughKeysError
 import primetable
 import keytable
@@ -32,8 +32,8 @@ def create_key(keylen, tmin, tmax):
 def main():
     primetable.load()
     parser = argparse.ArgumentParser(prog='keygen.py', description='Create an RSA key')
-    parser.add_argument('keylength', type=int, default=64, nargs='?')
-    parser.add_argument('-tmin', '--min_threshold', type=float, default=1056)
+    parser.add_argument('keylength', type=int, default=default_keylength, nargs='?')
+    parser.add_argument('-tmin', '--min_threshold', type=float, default=default_tmin)
     parser.add_argument('-tmax', '--max_threshold', type=float, default=primetable.get(-1))
     parser.add_argument('-o', '--outputfile', type=str, default=default_generated_key_path)
     args = parser.parse_args()
