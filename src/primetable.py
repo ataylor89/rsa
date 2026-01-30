@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from settings import project_root
+from settings import project_root, default_primetable_size
 import pickle
 import time
 import argparse
@@ -53,7 +53,7 @@ def save():
 
 def main():
     parser = argparse.ArgumentParser(prog='primetable.py', description='Generate primes and store them in a prime table')
-    parser.add_argument('numberofprimes', type=float, default=1e4, nargs='?')
+    parser.add_argument('numberofprimes', type=float, default=default_primetable_size, nargs='?')
     args = parser.parse_args()
     try:
         n = int(args.numberofprimes)
