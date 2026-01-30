@@ -13,7 +13,7 @@ parser.py | Parses an RSA key, like the one in keys/defaultkey.txt, and returns 
 util.py | Contains many useful functions, like power_mod_n, which are used in encryption and decryption
 exceptions.py | Defines different exceptions that can be raised by the code in this package
 primecheck.py | Contains an algorithm for determining whether a number is prime, which is useful in some of the unit tests
-settings.py | Contains some useful settings, like the project root directory and the default key path
+settings.py | Contains many settings, like the project root directory and the default key path
 encrypt.py | Encrypts a message using the public key
 decrypt.py | Decrypts an encrypted messsage using the private key
 
