@@ -8,15 +8,19 @@ import argparse
 table = []
 
 def generate(n):
+    if not isinstance(n, int) or n < 1:
+        raise ValueError('The generate method accepts a positive integer')
     size = 10 * n
-    s = sieve(n, size)
+    s = sieve(size)
     while s.count('P') < n:
         size *= 10
-        s = sieve(n, size)
+        s = sieve(size)
     table.clear()
     table.extend([i for i, j in enumerate(s) if j == 'P'][0:n])
 
-def sieve(n, size):
+def sieve(size):
+    if not isinstance(size, int) or size < 2:
+        raise ValueError('The sieve method accepts a positive integer greater than or equal to two')
     arr = ['P'] * size
     arr[0] = 'N'
     arr[1] = 'N'
