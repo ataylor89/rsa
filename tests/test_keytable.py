@@ -9,6 +9,10 @@ class TestKeytable(TestCase):
     def setUpClass(cls):
         primetable.generate(int(1e4))
 
+    @classmethod
+    def tearDownClass(cls):
+        primetable.table.clear()
+
     def verify_table(self, numkeys, tmin, tmax):
         keytable.generate(numkeys, tmin, tmax, verbose=False)
         for (n, p, q, phi, e, d) in keytable.table.values():
