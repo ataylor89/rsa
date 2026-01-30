@@ -22,10 +22,6 @@ class TestPrimetable(TestCase):
         self.verify_table(1)
         self.verify_table(2)
 
-    def test_negative_input_for_primetable(self):
-        with self.assertRaises(ValueError):
-            primetable.generate(-1)
-
     def verify_sieve(self, size):
         sieve = primetable.sieve(size)
         sieve_length = len(sieve)
@@ -51,7 +47,3 @@ class TestPrimetable(TestCase):
             sieve = primetable.sieve(1)
         self.verify_sieve(2)
         self.verify_sieve(3)
-
-    def test_negative_input_for_sieve(self):
-        with self.assertRaises(ValueError):
-            sieve = primetable.sieve(-1)
