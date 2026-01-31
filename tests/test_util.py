@@ -2,7 +2,7 @@ import primetable
 import keytable
 import keygen
 import time
-from util import power_mod_n
+from util import power_mod_n, encode, decode, size
 from unittest import TestCase
 
 class TestUtil(TestCase):
@@ -83,3 +83,19 @@ class TestUtil(TestCase):
             assert m == mm
 
             print(f'({c} ** {d}) % {n} took {elapsed1:.10f} seconds | power_mod_n({c}, {d}, {n}) took {elapsed2:.10f} seconds')
+
+    def test_encode(self):
+        msg = 'hello world! it is saturday january 31 2026'
+        key = self.key
+        keylen = len(key)
+
+        codepoints = list(map(lambda x: ord(x), msg))
+
+        for i in range(len(codepoints)):
+            n, e, d = key[i % keylen]
+            m = codepoints[i]
+            c = power_mod_n(m, e, n)
+            s = size(n)
+            encoded_string = encode(c, s)
+            decoded_number = decode(encoded_string)
+            assert decoded_number == c
