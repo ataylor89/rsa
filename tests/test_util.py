@@ -41,7 +41,7 @@ class TestUtil(TestCase):
             mm = power_mod_n(c, d, n)
             assert m == mm
 
-    def test_time_comparison(self):
+    def test_compare_times(self):
         msg = 'test'
         key = self.key
         keylen = len(key)
