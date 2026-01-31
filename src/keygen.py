@@ -14,7 +14,6 @@ def create_key(keylen, tmin, tmax):
         raise ThresholdError('tmin must be greater than or equal to 1056')
     if tmin > tmax:
         raise ThresholdError('tmin must be less than or equal to tmax')
-    keytable.load()
     filtered = {}
     for k,v in keytable.table.items():
         if v[1] >= tmin and v[1] <= tmax and v[2] >= tmin and v[2] <= tmax:
@@ -31,6 +30,7 @@ def create_key(keylen, tmin, tmax):
 
 def main():
     primetable.load()
+    keytable.load()
     parser = argparse.ArgumentParser(prog='keygen.py', description='Create an RSA key')
     parser.add_argument('keylength', type=int, default=default_keylength, nargs='?')
     parser.add_argument('-tmin', '--min_threshold', type=float, default=default_tmin)

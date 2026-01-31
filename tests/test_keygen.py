@@ -2,6 +2,7 @@ import primetable
 import keytable
 import keygen
 from util import power_mod_n
+from exceptions import KeyLengthError, NotEnoughKeysError
 from unittest import TestCase
 
 class TestKeygen(TestCase):
@@ -44,6 +45,8 @@ class TestKeygen(TestCase):
             assert message[i] == chr(m)
  
     def test_small_inputs(self):
+        with self.assertRaises(KeyLengthError):
+            self.verify_key(0, self.tmin, self.tmax)
         self.verify_key(1, self.tmin, self.tmax)
         self.verify_key(2, self.tmin, self.tmax)
         self.verify_key(3, self.tmin, self.tmax)
@@ -52,3 +55,5 @@ class TestKeygen(TestCase):
         self.verify_key(30, self.tmin, self.tmax)
         self.verify_key(31, self.tmin, self.tmax)
         self.verify_key(32, self.tmin, self.tmax)
+        with self.assertRaises(NotEnoughKeysError):
+            self.verify_key(33, self.tmin, self.tmax)
