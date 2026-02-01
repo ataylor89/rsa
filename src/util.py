@@ -10,14 +10,14 @@ def power_mod_n(base, expo, n):
 
 def encode(num, size):
     str = ''
-    for i in range(0, size):
+    for i in range(size):
         str += chr(num & 0xFF)
         num = num >> 8
     return str
 
 def decode(str):
     num = 0
-    for i in range(0, len(str)):
+    for i in range(len(str)):
         num += ord(str[i]) << 8*i
     return num
 

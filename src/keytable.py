@@ -89,11 +89,11 @@ def test(n, e, d):
     codes = list(map(lambda x: ord(x), test_message))
 
     encrypted = []
-    for i in range(0, len(codes)):
+    for i in range(len(codes)):
         encrypted.append(util.power_mod_n(codes[i], e, n))
 
     decrypted = []
-    for i in range(0, len(codes)):
+    for i in range(len(codes)):
         decrypted.append(util.power_mod_n(encrypted[i], d, n))
 
     return codes == decrypted
