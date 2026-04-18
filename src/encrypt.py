@@ -4,6 +4,7 @@ from settings import default_key_path
 import parser
 import util
 import argparse
+import base64
 
 def encrypt(msg, key):
     ciphertext = ''
@@ -15,7 +16,7 @@ def encrypt(msg, key):
         cipher = util.power_mod_n(codepoints[i], e, n)
         encoding = util.encode(cipher, size)
         ciphertext += encoding
-    return ciphertext
+    return base64.b64encode(ciphertext.encode('utf-8')).decode('utf-8')
 
 def main():
     argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message using the RSA algorithm')

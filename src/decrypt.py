@@ -4,8 +4,10 @@ from settings import default_key_path
 import parser
 import util
 import argparse
+import base64
 
 def decrypt(ciphertext, key):
+    ciphertext = base64.b64decode(ciphertext).decode('utf-8')
     message = ''
     keylen = len(key)
     start = 0
