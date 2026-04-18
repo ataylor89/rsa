@@ -7,16 +7,15 @@ import argparse
 import base64
 
 def encrypt(msg, key):
-    ciphertext = ''
+    bytearr = bytearray()
     codepoints = list(map(lambda x: ord(x), msg))
     keylen = len(key)
     for i in range(len(codepoints)):
         (n, e, d) = key[i % keylen]
         size = util.size(n)
         cipher = util.power_mod_n(codepoints[i], e, n)
-        encoding = util.encode(cipher, size)
-        ciphertext += encoding
-    return base64.b64encode(ciphertext.encode('utf-8')).decode('utf-8')
+        bytearr += cipher.to_bytes(size, byteorder='big')
+    return base64.b64encode(bytearr).decode('utf-8')
 
 def main():
     argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message using the RSA algorithm')

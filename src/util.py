@@ -8,21 +8,5 @@ def power_mod_n(base, expo, n):
         expo = expo // 2
     return res
 
-def encode(num, size):
-    str = ''
-    for i in range(size):
-        str += chr(num & 0xFF)
-        num = num >> 8
-    return str
-
-def decode(str):
-    num = 0
-    for i in range(len(str)):
-        num += ord(str[i]) << 8*i
-    return num
-
 def size(num):
-    k = 1
-    while (2**8)**k - 1  < num:
-        k += 1
-    return k
+    return (num.bit_length() + 7) // 8
