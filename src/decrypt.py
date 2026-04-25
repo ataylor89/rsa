@@ -8,7 +8,7 @@ import base64
 
 def decrypt(ciphertext, key):
     bytearr = base64.b64decode(ciphertext)
-    message = ''
+    plaintext = ''
     keylen = len(key)
     start = 0
     end = 0
@@ -20,10 +20,10 @@ def decrypt(ciphertext, key):
         block = bytearr[start:end]
         cipher = int.from_bytes(block, byteorder='big')
         codepoint = util.power_mod_n(cipher, d, n)
-        message += chr(codepoint)
+        plaintext += chr(codepoint)
         i += 1
         start += size
-    return message
+    return plaintext
 
 def main():
     argparser = argparse.ArgumentParser(prog='decrypt.py', description='Decrypt a message using the RSA algorithm')

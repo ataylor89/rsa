@@ -15,7 +15,8 @@ def encrypt(plaintext, key):
         size = util.size(n)
         cipher = util.power_mod_n(codepoints[i], e, n)
         bytearr += cipher.to_bytes(size, byteorder='big')
-    return base64.b64encode(bytearr).decode('utf-8')
+    ciphertext = base64.b64encode(bytearr).decode('utf-8')
+    return ciphertext
 
 def main():
     argparser = argparse.ArgumentParser(prog='encrypt.py', description='Encrypt a message using the RSA algorithm')
