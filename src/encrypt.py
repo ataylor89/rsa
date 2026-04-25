@@ -6,9 +6,9 @@ import util
 import argparse
 import base64
 
-def encrypt(msg, key):
+def encrypt(plaintext, key):
     bytearr = bytearray()
-    codepoints = list(map(lambda x: ord(x), msg))
+    codepoints = list(map(lambda x: ord(x), plaintext))
     keylen = len(key)
     for i in range(len(codepoints)):
         (n, e, d) = key[i % keylen]
@@ -27,11 +27,11 @@ def main():
     args = argparser.parse_args()
     if args.inputfile:
         with open(args.inputfile, 'r') as file:
-            msg = file.read()
+            plaintext = file.read()
     else:
-        msg = args.message
+        plaintext = args.message
     key = parser.parse_key(args.keyfile)
-    ciphertext = encrypt(msg, key)
+    ciphertext = encrypt(plaintext, key)
     if args.outputfile:
         with open(args.outputfile, 'w') as file:
             file.write(ciphertext)

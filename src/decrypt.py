@@ -28,7 +28,7 @@ def decrypt(ciphertext, key):
 def main():
     argparser = argparse.ArgumentParser(prog='decrypt.py', description='Decrypt a message using the RSA algorithm')
     group = argparser.add_mutually_exclusive_group(required=True)
-    group.add_argument('ciphertext', type=str, nargs='?')
+    group.add_argument('message', type=str, nargs='?')
     group.add_argument('-i', '--inputfile', type=str)
     argparser.add_argument('-k', '--keyfile', type=str, default=default_key_path)
     argparser.add_argument('-o', '--outputfile', type=str)
@@ -37,14 +37,14 @@ def main():
         with open(args.inputfile, 'rb') as file:
             ciphertext = file.read()
     else:
-        ciphertext = args.ciphertext
+        ciphertext = args.message
     key = parser.parse_key(args.keyfile)
-    msg = decrypt(ciphertext, key)
+    plaintext = decrypt(ciphertext, key)
     if args.outputfile:
         with open(args.outputfile, 'w') as file:
-            file.write(msg)
+            file.write(plaintext)
     else:
-        print(msg, end='')
+        print(plaintext, end='')
 
 if __name__ == '__main__':
     main()
