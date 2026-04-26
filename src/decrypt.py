@@ -13,7 +13,7 @@ def decrypt(ciphertext, key):
     start = 0
     end = 0
     i = 0
-    while start < len(ciphertext):
+    while start < len(bytearr):
         (n, e, d) = key[i % keylen]
         size = util.size(n)
         end = start + size
